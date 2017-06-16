@@ -1,0 +1,44 @@
+{
+    "debug": true,
+    "logs": "log.log",
+    "ad-msg": "",
+    "http": {
+        "enabled": true,
+        "listen": "127.0.0.1:6062"
+    },
+    "amqp": {
+        "addr": "amqp://admin:admin@172.18.49.126/",
+        "maxIdle": 20
+    },
+    "worker": {
+        "wechat": 1
+    },
+    "db": {
+        "dsn": "root:123@tcp(127.0.0.1:3306)/wechat2?loc=Local&parseTime=true",
+        "maxIdle": 4
+    },
+    "redis": {
+        "addr": "localhost:6379",
+        "password": "",
+        "maxIdle": 2,
+        "db": 5
+    },
+    "wechats": [
+        {
+            "WxId": "gh_f353e8a82fe5",
+            "AppId": "wxaccxxxx",
+            "Token": "weixin",
+            "Aeskey": "aeskey",
+            "AutoAnswer": true,
+            "Welcome": "欢迎来到云喇叭，网购炫货求点赞，上传宝贝试一试！（努力开发中...）"
+        },
+        {
+            "WxId": "gh_8ac8a8821eb8",
+            "AppId": "wxaccxxxx",
+            "Token": "weixin",
+            "Aeskey": "aeskey",
+            "AutoAnswer": true,
+            "Welcome": "欢迎来到云喇叭，网购炫货求点赞，上传宝贝试一试！（努力开发中...）"
+        }
+    ]
+}
