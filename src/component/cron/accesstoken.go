@@ -19,7 +19,9 @@ func monitorToken() {
 		key := "wx_acc_tkn_" + c.AppID // 判断 redis中这个token 是否存
 		t, _ := redis.Int64(rc.Do("TTL", key))
 		if t < 600 { //  即将过期
+			log.Println("will refresh component accesstoke")
 			token := section.GetTuiKeToken(c.AppID, c.AppSecret)
+			log.Println(token)
 			if token == nil {
 				time.Sleep(30 * time.Second)
 				continue
