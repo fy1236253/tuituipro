@@ -2,8 +2,7 @@ package main
 
 import (
 	"cfg"
-	"cron"
-	// "component/cron"
+	"component/cron"
 	"component/g"
 	"component/http"
 	"flag"
