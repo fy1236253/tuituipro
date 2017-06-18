@@ -21,7 +21,6 @@ func monitorToken() {
 		if t < 600 { //  即将过期
 			log.Println("will refresh component accesstoke")
 			token := section.GetTuiKeToken(c.AppID, c.AppSecret)
-			log.Println(token)
 			if token == nil {
 				time.Sleep(30 * time.Second)
 				continue

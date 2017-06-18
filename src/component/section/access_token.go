@@ -15,7 +15,7 @@ func GetTuiKeToken(appID, appSecret string) *AccessTokenInfo {
 	tmpjson := "{ \"component_appid\":\"" + appID + "\", \"component_appsecret\":\"" + appSecret + "\",\"component_verify_ticket\":\"" + GetOutRedisTicket() + "\"}"
 	r.Body(tmpjson)
 	resp, err := r.String() //  {"errcode":40013,"errmsg":"invalid appid hint: [1HtmMa0495vr19]"}
-	// log.Println(resp)
+	log.Println(resp)
 	if err != nil {
 		log.Println("[ERROR] refresh token", err)
 		return nil
