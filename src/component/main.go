@@ -2,6 +2,7 @@ package main
 
 import (
 	"cfg"
+	"cron"
 	// "component/cron"
 	"component/g"
 	"component/http"
@@ -41,7 +42,7 @@ func main() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 	log.SetPrefix(fmt.Sprintf("PID.%d ", os.Getpid()))
 	go http.Start()
-	// go cron.Start()
+	go cron.Start()
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	go func() {
