@@ -24,7 +24,6 @@ func ConfigWebHTTP() {
 			http.NotFound(w, r)
 			return
 		}
-
 		data := struct {
 		}{}
 
