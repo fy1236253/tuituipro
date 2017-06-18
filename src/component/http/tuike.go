@@ -19,6 +19,7 @@ import (
 // ConfigWechatRoutes 微信页面路由
 func ConfigWechatRoutes() {
 	http.HandleFunc("/tuike", func(w http.ResponseWriter, req *http.Request) {
+
 		// 捕获异常
 		defer func() {
 			if r := recover(); r != nil {
