@@ -8,7 +8,6 @@ import (
 	"encoding/xml"
 	"log"
 	"mp"
-	"mp/menu"
 	"mp/message"
 	"mp/message/request"
 	"net/http"
@@ -87,7 +86,7 @@ func ConfigWechatRoutes() {
 					case "unauthorized":
 						{
 							log.Println("[cancel Authority]:" + mixedMsg.AuthorizerAppid)
-							menu.DeleteMenu(mixedMsg.AuthorizerAppid)
+							// menu.DeleteMenu(mixedMsg.AuthorizerAppid)
 							section.DelAuthorInfo(mixedMsg.AuthorizerAppid)
 
 						}
