@@ -10,6 +10,8 @@ import (
 	"net/url"
 	"path/filepath"
 
+	"encoding/json"
+
 	"github.com/toolkits/file"
 )
 
@@ -43,7 +45,6 @@ func ConfigWebHTTP() {
 		preCode := section.GetPreAuthCode()
 		addr := "https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + cfg.AppID + "&pre_auth_code=" + preCode.Pre_auth_code + "&redirect_uri=" + url.QueryEscape(reURL)
 		// log.Println("http.Redirect", addr)
-
 		http.Redirect(w, r, addr, 302)
 		return
 	})
@@ -57,6 +58,11 @@ func ConfigWebHTTP() {
 			return
 		}
 		num := queryValues.Get("num")
+		authCode := queryValues.Get("auth_code")
+		authorizer := section.GetAuthorizationInfo(authCode)
+		userInfo := section.GetAuthorizationBasicInfo(authorizer.AuthorizationInfo.AuthorizerAppid)
+		info, _ := json.Marshal(userInfo)
+		log.Println(string(info))
 		log.Println(num)
 		addr := "http://91coolshe.com"
 		http.Redirect(w, r, addr, 302)
