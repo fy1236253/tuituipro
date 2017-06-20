@@ -51,8 +51,5 @@ type AuthorizerInfo struct {
 
 // RespData 返回给客户端数据
 type RespData struct {
-	Data struct {
-		AuthorizerInfo *AuthorizerInfo `json:"authorizer_info"`
-		TuiTuiCode     string          `json:"tuitui_code"`
-	} `json:"data"`
+	AuthorizerInfo *AuthorizerInfo `json:"authorizer_info"`
 }

@@ -1,7 +1,6 @@
 package http
 
 import (
-	"bytes"
 	"cfg"
 	"component/g"
 	"component/section"
@@ -92,14 +91,9 @@ func ConfigWebHTTP() {
 		// log.Println(userInfo)
 		authorizer.AuthorizationInfo.SetBasicAuthorizerInfo()
 		var respdata section.RespData
-		respdata.Data.AuthorizerInfo = userInfo
-		respdata.Data.TuiTuiCode = tuiCode
-		// info, _ := json.Marshal(respdata)
-		buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
-		buf.Reset()
-		json.NewEncoder(buf).Encode(respdata)
-		body := buf.String()
-		section.ReturnAuthorizerInfo(body)
+		respdata.AuthorizerInfo = userInfo
+		info, _ := json.Marshal(respdata)
+		section.ReturnAuthorizerInfo(string(info), tuiCode)
 		// log.Println(string(info))
 		addr := "http://www.91coolshe.com/main"
 		http.Redirect(w, r, addr, 302)
