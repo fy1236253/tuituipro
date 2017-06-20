@@ -9,7 +9,7 @@ import (
 )
 
 // ReturnAuthorizerInfo 返回web的info
-func ReturnAuthorizerInfo(tuiCode, info string) {
+func ReturnAuthorizerInfo(info, tuiCode string) {
 	addr := "http://127.0.0.1:4200/authorizer_info"
 	// addr := "http://localhost:6062/component/returninfo"
 	req := httplib.Post(addr).SetTimeout(5*time.Second, 1*time.Minute)
