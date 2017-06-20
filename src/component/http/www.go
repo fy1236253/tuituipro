@@ -62,7 +62,6 @@ func ConfigWebHTTP() {
 	})
 	http.HandleFunc("/component/returninfo", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("<----Start of Authority----->")
-		r.ParseForm()
 		queryValues, err := url.ParseQuery(r.URL.RawQuery)
 		log.Println("ParseQuery", queryValues)
 		if err != nil {
@@ -70,8 +69,9 @@ func ConfigWebHTTP() {
 			w.WriteHeader(400)
 			return
 		}
+		r.ParseForm()
 		result, _ := ioutil.ReadAll(r.Body)
-		r.Body.Close()
+		defer r.Body.Close()
 		fmt.Printf("%s\n", result)
 	})
 	http.HandleFunc("/component/auth/callback", func(w http.ResponseWriter, r *http.Request) {
