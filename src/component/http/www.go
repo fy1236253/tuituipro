@@ -67,6 +67,7 @@ func ConfigWebHTTP() {
 			return
 		}
 		authCode := queryValues.Get("auth_code")
+		log.Println(authCode)
 		authorizer := section.GetAuthorizationInfo(authCode) //获取授权信息
 		log.Println(authorizer)
 		userInfo := section.GetAuthorizationBasicInfo(authorizer.AuthorizationInfo.AuthorizerAppid)
