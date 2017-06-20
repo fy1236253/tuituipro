@@ -46,4 +46,5 @@ type AuthorizerInfo struct {
 	UserName      string `json:"user_name"`      //公众号原始id
 	PrincipalName string `json:"principal_name"` //公众号名称
 	QrcodeURL     string `json:"qrcode_url"`
+	Appid         string `json:"appid"`
 }

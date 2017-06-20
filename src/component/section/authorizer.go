@@ -87,6 +87,7 @@ func GetAuthorizationBasicInfo(appid string) *AuthorizerInfo {
 		log.Println("[ERROR] json ", err, resp)
 		return nil
 	}
+	authorizer.AuthorizerInfo.Appid = appid
 	return &authorizer.AuthorizerInfo
 }
 

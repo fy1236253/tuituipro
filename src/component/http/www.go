@@ -49,7 +49,7 @@ func ConfigWebHTTP() {
 			return
 		}
 		cfg := cfg.Config().TuiKe
-		reURL := "http://www.91coolshe.com/component/auth/callback?num=13618075393"
+		reURL := "http://www.91coolshe.com/component/auth/callback?auth_code=" + queryValues.Get("auth_code")
 		// reURL := "http://91coolshe.com"
 		preCode := section.GetPreAuthCode()
 		addr := "https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + cfg.AppID + "&pre_auth_code=" + preCode.Pre_auth_code + "&redirect_uri=" + url.QueryEscape(reURL)
@@ -68,11 +68,13 @@ func ConfigWebHTTP() {
 		}
 		num := queryValues.Get("num")
 		authCode := queryValues.Get("auth_code")
-		authorizer := section.GetAuthorizationInfo(authCode)
+		authorizer := section.GetAuthorizationInfo(authCode) //获取授权信息
 		userInfo := section.GetAuthorizationBasicInfo(authorizer.AuthorizationInfo.AuthorizerAppid)
 		section.CheckIsNil(authorizer)
+		userInfo.Appid = authCode
 		authorizer.AuthorizationInfo.SetBasicAuthorizerInfo()
 		info, _ := json.Marshal(userInfo)
+		section.ReturnAuthorizerInfo(info)
 		log.Println(string(info))
 		log.Println(num)
 		addr := "http://www.91coolshe.com/main"
