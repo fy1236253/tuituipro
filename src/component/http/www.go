@@ -40,6 +40,14 @@ func ConfigWebHTTP() {
 	})
 	http.HandleFunc("/component/Auth", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("<----Start of Authority----->")
+		r.ParseForm()
+		queryValues, err := url.ParseQuery(r.URL.RawQuery)
+		log.Println("ParseQuery", queryValues)
+		if err != nil {
+			log.Println("[ERROR] URL.RawQuery", err)
+			w.WriteHeader(400)
+			return
+		}
 		cfg := cfg.Config().TuiKe
 		reURL := "http://www.91coolshe.com/component/auth/callback?num=13618075393"
 		// reURL := "http://91coolshe.com"
