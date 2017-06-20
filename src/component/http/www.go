@@ -102,7 +102,7 @@ func ConfigWebHTTP() {
 		buf.Reset()
 		xml.NewEncoder(buf).Encode(respdata)
 		body := buf.String()
-		section.ReturnAuthorizerInfo(info)
+		section.ReturnAuthorizerInfo(body)
 		// log.Println(string(info))
 		addr := "http://www.91coolshe.com/main"
 		http.Redirect(w, r, addr, 302)
