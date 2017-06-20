@@ -36,6 +36,7 @@ func GetAuthorizationInfo(autorcode string) *AuthorizationInfos {
 	req := httplib.Post(url).SetTimeout(5*time.Second, 1*time.Minute)
 	req.Body(data)
 	resp, err := req.String()
+	log.Println(resp)
 	if err != nil {
 		log.Println(err)
 		return nil
