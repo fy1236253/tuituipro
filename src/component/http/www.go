@@ -7,6 +7,7 @@ import (
 	"component/section"
 	"encoding/json"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -57,19 +58,19 @@ func ConfigWebHTTP() {
 		http.Redirect(w, r, addr, 302)
 		return
 	})
-	// http.HandleFunc("/component/returninfo", func(w http.ResponseWriter, r *http.Request) {
-	// 	queryValues, err := url.ParseQuery(r.URL.RawQuery)
-	// 	log.Println("ParseQuery", queryValues)
-	// 	if err != nil {
-	// 		log.Println("[ERROR] URL.RawQuery", err)
-	// 		w.WriteHeader(400)
-	// 		return
-	// 	}
-	// 	r.ParseForm()
-	// 	result, _ := ioutil.ReadAll(r.Body)
-	// 	defer r.Body.Close()
-	// 	log.Println(string(result))
-	// })
+	http.HandleFunc("/component/returninfo", func(w http.ResponseWriter, r *http.Request) {
+		queryValues, err := url.ParseQuery(r.URL.RawQuery)
+		log.Println("ParseQuery", queryValues)
+		if err != nil {
+			log.Println("[ERROR] URL.RawQuery", err)
+			w.WriteHeader(400)
+			return
+		}
+		r.ParseForm()
+		result, _ := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		log.Println(string(result))
+	})
 	http.HandleFunc("/component/auth/callback", func(w http.ResponseWriter, r *http.Request) {
 		queryValues, err := url.ParseQuery(r.URL.RawQuery)
 		log.Println("ParseQuery", queryValues)
