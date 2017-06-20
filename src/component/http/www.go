@@ -49,7 +49,7 @@ func ConfigWebHTTP() {
 			return
 		}
 		cfg := cfg.Config().TuiKe
-		reURL := "http://www.91coolshe.com/component/auth/callback?auth_code=" + queryValues.Get("auth_code")
+		reURL := "http://www.91coolshe.com/component/auth/callback?auth_code=" + queryValues.Get("tuitui_code")
 		// reURL := "http://91coolshe.com"
 		preCode := section.GetPreAuthCode()
 		addr := "https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + cfg.AppID + "&pre_auth_code=" + preCode.Pre_auth_code + "&redirect_uri=" + url.QueryEscape(reURL)
@@ -58,7 +58,6 @@ func ConfigWebHTTP() {
 		return
 	})
 	http.HandleFunc("/component/auth/callback", func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
 		queryValues, err := url.ParseQuery(r.URL.RawQuery)
 		log.Println("ParseQuery", queryValues)
 		if err != nil {
@@ -66,13 +65,15 @@ func ConfigWebHTTP() {
 			w.WriteHeader(400)
 			return
 		}
+		r.ParseForm()
 		authCode := queryValues.Get("auth_code")
+		tuiCode := queryValues.Get("tuitui_code")
 		log.Println(authCode)
 		authorizer := section.GetAuthorizationInfo(authCode) //获取授权信息
 		log.Println(authorizer)
 		userInfo := section.GetAuthorizationBasicInfo(authorizer.AuthorizationInfo.AuthorizerAppid)
 		section.CheckIsNil(authorizer)
-		userInfo.Appid = authCode
+		userInfo.Appid = tuiCode
 		log.Println(userInfo)
 		authorizer.AuthorizationInfo.SetBasicAuthorizerInfo()
 		info, _ := json.Marshal(userInfo)
