@@ -49,7 +49,7 @@ func ConfigWebHTTP() {
 			return
 		}
 		cfg := cfg.Config().TuiKe
-		reURL := "http://www.91coolshe.com/component/auth/callback?auth_code=" + queryValues.Get("tuitui_code")
+		reURL := "http://www.91coolshe.com/component/auth/callback?tuitui_code=" + queryValues.Get("tuitui_code")
 		// reURL := "http://91coolshe.com"
 		preCode := section.GetPreAuthCode()
 		addr := "https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + cfg.AppID + "&pre_auth_code=" + preCode.Pre_auth_code + "&redirect_uri=" + url.QueryEscape(reURL)
