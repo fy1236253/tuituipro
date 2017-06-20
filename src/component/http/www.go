@@ -77,8 +77,8 @@ func ConfigWebHTTP() {
 		log.Println(userInfo)
 		authorizer.AuthorizationInfo.SetBasicAuthorizerInfo()
 		var respdata section.RespData
-		respdata.AuthorizerInfo = userInfo
-		respdata.TuiTuiCode = tuiCode
+		respdata.Data.AuthorizerInfo = userInfo
+		respdata.Data.TuiTuiCode = tuiCode
 		info, _ := json.Marshal(respdata)
 		section.ReturnAuthorizerInfo(info)
 		log.Println(string(info))
