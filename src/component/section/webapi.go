@@ -9,7 +9,8 @@ import (
 )
 
 // ReturnAuthorizerInfo 返回web的info
-func ReturnAuthorizerInfo(info []byte) {
+func ReturnAuthorizerInfo(info string) {
+	log.Println(info)
 	addr := "http://localhost:6062/component/returninfo"
 	req := httplib.Post(addr).SetTimeout(5*time.Second, 1*time.Minute)
 	req.Body(info)

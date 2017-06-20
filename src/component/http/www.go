@@ -1,6 +1,7 @@
 package http
 
 import (
+	"bytes"
 	"cfg"
 	"component/g"
 	"component/section"
@@ -12,7 +13,7 @@ import (
 	"net/url"
 	"path/filepath"
 
-	"encoding/json"
+	"encoding/xml"
 
 	"github.com/toolkits/file"
 )
@@ -96,7 +97,11 @@ func ConfigWebHTTP() {
 		var respdata section.RespData
 		respdata.Data.AuthorizerInfo = userInfo
 		respdata.Data.TuiTuiCode = tuiCode
-		info, _ := json.Marshal(respdata)
+		// info, _ := json.Marshal(respdata)
+		buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
+		buf.Reset()
+		xml.NewEncoder(buf).Encode(respdata)
+		body := buf.String()
 		section.ReturnAuthorizerInfo(info)
 		// log.Println(string(info))
 		addr := "http://www.91coolshe.com/main"
