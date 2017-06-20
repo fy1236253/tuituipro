@@ -4,7 +4,9 @@ import (
 	"cfg"
 	"component/g"
 	"component/section"
+	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -57,6 +59,20 @@ func ConfigWebHTTP() {
 		http.Redirect(w, r, addr, 302)
 		return
 	})
+	http.HandleFunc("/component/returninfo", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("<----Start of Authority----->")
+		r.ParseForm()
+		queryValues, err := url.ParseQuery(r.URL.RawQuery)
+		log.Println("ParseQuery", queryValues)
+		if err != nil {
+			log.Println("[ERROR] URL.RawQuery", err)
+			w.WriteHeader(400)
+			return
+		}
+		result, _ := ioutil.ReadAll(r.Body)
+		r.Body.Close()
+		fmt.Printf("%s\n", result)
+	})
 	http.HandleFunc("/component/auth/callback", func(w http.ResponseWriter, r *http.Request) {
 		queryValues, err := url.ParseQuery(r.URL.RawQuery)
 		log.Println("ParseQuery", queryValues)
@@ -68,20 +84,21 @@ func ConfigWebHTTP() {
 		r.ParseForm()
 		authCode := queryValues.Get("auth_code")
 		tuiCode := queryValues.Get("tuitui_code")
-		log.Println(authCode)
+		// log.Println(authCode)
 		authorizer := section.GetAuthorizationInfo(authCode) //获取授权信息
-		log.Println(authorizer)
+		// log.Println(authorizer)
+		// 获取授权号的基本信息
 		userInfo := section.GetAuthorizationBasicInfo(authorizer.AuthorizationInfo.AuthorizerAppid)
 		section.CheckIsNil(authorizer)
 		userInfo.Appid = authorizer.AuthorizationInfo.AuthorizerAppid
-		log.Println(userInfo)
+		// log.Println(userInfo)
 		authorizer.AuthorizationInfo.SetBasicAuthorizerInfo()
 		var respdata section.RespData
 		respdata.Data.AuthorizerInfo = userInfo
 		respdata.Data.TuiTuiCode = tuiCode
 		info, _ := json.Marshal(respdata)
 		section.ReturnAuthorizerInfo(info)
-		log.Println(string(info))
+		// log.Println(string(info))
 		addr := "http://www.91coolshe.com/main"
 		http.Redirect(w, r, addr, 302)
 		return
