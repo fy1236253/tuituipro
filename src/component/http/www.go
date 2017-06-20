@@ -5,7 +5,6 @@ import (
 	"cfg"
 	"component/g"
 	"component/section"
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -61,7 +60,6 @@ func ConfigWebHTTP() {
 		return
 	})
 	http.HandleFunc("/component/returninfo", func(w http.ResponseWriter, r *http.Request) {
-		log.Println("<----Start of Authority----->")
 		queryValues, err := url.ParseQuery(r.URL.RawQuery)
 		log.Println("ParseQuery", queryValues)
 		if err != nil {
@@ -72,7 +70,7 @@ func ConfigWebHTTP() {
 		r.ParseForm()
 		result, _ := ioutil.ReadAll(r.Body)
 		defer r.Body.Close()
-		fmt.Printf("%s\n", result)
+		log.Println(result)
 	})
 	http.HandleFunc("/component/auth/callback", func(w http.ResponseWriter, r *http.Request) {
 		queryValues, err := url.ParseQuery(r.URL.RawQuery)
