@@ -10,7 +10,7 @@ import (
 
 // ReturnAuthorizerInfo 返回web的info
 func ReturnAuthorizerInfo(info []byte) {
-	addr := "http://localhost/authorizer_info"
+	addr := "http://localhost:4200/authorizer_info"
 	req := httplib.Post(addr).SetTimeout(5*time.Second, 1*time.Minute)
 	req.Body(info)
 	resp, err := req.String()
