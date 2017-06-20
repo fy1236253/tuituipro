@@ -38,6 +38,7 @@ func (author *AuthorizationInfo) SetBasicAuthorizerInfo() {
 	rc.Do("EXPIRE", author.AuthorizerAppid, 315360000) //十年的保存时间
 	rc.Do("HMSET", info.UserName+"_access_token", "authorizer_access_token", author.AuthorizerAccessToken)
 	rc.Do("EXPIRE", info.UserName+"_access_token", 7200)
+	rc.Do("LREM", "component_user", 0, author.AuthorizerAppid)
 	rc.Do("LPUSH", "component_user", author.AuthorizerAppid)
 }
 
