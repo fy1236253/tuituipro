@@ -66,7 +66,6 @@ func ConfigWebHTTP() {
 			w.WriteHeader(400)
 			return
 		}
-		num := queryValues.Get("num")
 		authCode := queryValues.Get("auth_code")
 		authorizer := section.GetAuthorizationInfo(authCode) //获取授权信息
 		log.Println(authorizer)
@@ -78,7 +77,6 @@ func ConfigWebHTTP() {
 		info, _ := json.Marshal(userInfo)
 		section.ReturnAuthorizerInfo(info)
 		log.Println(string(info))
-		log.Println(num)
 		addr := "http://www.91coolshe.com/main"
 		http.Redirect(w, r, addr, 302)
 		return

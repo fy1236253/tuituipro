@@ -30,9 +30,9 @@ func GetPreAuthCode() *PreAuthInfo {
 }
 
 // GetAuthorizationInfo 授权成功后换取授权信息
-func GetAuthorizationInfo(autorcode string) *AuthorizationInfos {
+func GetAuthorizationInfo(authcode string) *AuthorizationInfos {
 	url := "https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=" + g.GetTuiKeAccessToken()
-	data := "{\"component_appid\":\"" + cfg.Config().TuiKe.AppID + "\",\"authorization_code\": \"" + autorcode + "\"}"
+	data := "{\"component_appid\":\"" + cfg.Config().TuiKe.AppID + "\",\"authorization_code\":\"" + authcode + "\"}"
 	req := httplib.Post(url).SetTimeout(5*time.Second, 1*time.Minute)
 	req.Body(data)
 	resp, err := req.String()
