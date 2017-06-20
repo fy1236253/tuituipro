@@ -75,7 +75,7 @@ func ConfigWebHTTP() {
 		info, _ := json.Marshal(userInfo)
 		log.Println(string(info))
 		log.Println(num)
-		addr := "http://91coolshe.com/main"
+		addr := "http://www.91coolshe.com/main"
 		http.Redirect(w, r, addr, 302)
 		return
 	})
