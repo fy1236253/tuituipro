@@ -73,10 +73,13 @@ func ConfigWebHTTP() {
 		log.Println(authorizer)
 		userInfo := section.GetAuthorizationBasicInfo(authorizer.AuthorizationInfo.AuthorizerAppid)
 		section.CheckIsNil(authorizer)
-		userInfo.Appid = tuiCode
+		userInfo.Appid = authorizer.AuthorizationInfo.AuthorizerAppid
 		log.Println(userInfo)
 		authorizer.AuthorizationInfo.SetBasicAuthorizerInfo()
-		info, _ := json.Marshal(userInfo)
+		var respdata section.RespData
+		respdata.AuthorizerInfo = userInfo
+		respdata.TuiTuiCode = tuiCode
+		info, _ := json.Marshal(respdata)
 		section.ReturnAuthorizerInfo(info)
 		log.Println(string(info))
 		addr := "http://www.91coolshe.com/main"

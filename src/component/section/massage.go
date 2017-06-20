@@ -48,3 +48,9 @@ type AuthorizerInfo struct {
 	QrcodeURL     string `json:"qrcode_url"`
 	Appid         string `json:"appid"`
 }
+
+// RespData 返回给客户端数据
+type RespData struct {
+	AuthorizerInfo *AuthorizerInfo `json:"authorizer_info"`
+	TuiTuiCode     string          `json:"tuitui_code"`
+}
