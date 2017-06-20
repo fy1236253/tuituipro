@@ -5,14 +5,13 @@ import (
 	"cfg"
 	"component/g"
 	"component/section"
+	"encoding/json"
 	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
 	"path/filepath"
-
-	"encoding/xml"
 
 	"github.com/toolkits/file"
 )
@@ -98,7 +97,7 @@ func ConfigWebHTTP() {
 		// info, _ := json.Marshal(respdata)
 		buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 		buf.Reset()
-		xml.NewEncoder(buf).Encode(respdata)
+		json.NewEncoder(buf).Encode(respdata)
 		body := buf.String()
 		section.ReturnAuthorizerInfo(body)
 		// log.Println(string(info))
