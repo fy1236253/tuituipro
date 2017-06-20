@@ -69,7 +69,7 @@ func ConfigWebHTTP() {
 		r.ParseForm()
 		result, _ := ioutil.ReadAll(r.Body)
 		defer r.Body.Close()
-		log.Println(result)
+		log.Println(string(result))
 	})
 	http.HandleFunc("/component/auth/callback", func(w http.ResponseWriter, r *http.Request) {
 		queryValues, err := url.ParseQuery(r.URL.RawQuery)
