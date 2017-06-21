@@ -99,4 +99,23 @@ func ConfigWebHTTP() {
 		http.Redirect(w, r, addr, 302)
 		return
 	})
+	http.HandleFunc("/component/test", func(w http.ResponseWriter, r *http.Request) {
+		fullurl := "http://" + r.Host + r.RequestURI
+		queryValues, err := url.ParseQuery(r.URL.RawQuery)
+		log.Println("ParseQuery", queryValues)
+		if err != nil {
+			log.Println("[ERROR] URL.RawQuery", err)
+			w.WriteHeader(400)
+			return
+		}
+		code := queryValues.Get("code") //  摇一摇入口 code 有效
+		state := queryValues.Get("state")
+		if code == "" && state == "" {
+			addr := "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdfac68fcc7a48fca" + "&redirect_uri=" + url.QueryEscape(fullurl) + "&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect"
+			log.Println("http.Redirect", addr)
+			http.Redirect(w, r, addr, 302)
+			return
+		}
+		log.Println(code, state)
+	})
 }
