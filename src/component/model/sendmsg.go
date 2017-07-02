@@ -52,6 +52,13 @@ func SendMessageNews(wxid, openid, title, desc, url, pic string) {
 	go custom.Send(tmpjson, section.GetAccessTokenFromRedis(wxid))
 }
 
+//SendMessageNewSpecial 图文消息由于encode会对&转义  所以特殊处理
+func SendMessageNewSpecial(wxid, openid, title, desc, url, pic string) {
+	tmpjson := "{\"wxid\":\"" + wxid + "\",\"touser\":\"" + openid + "\",\"msgtype\":\"news\",\"news\":{\"articles\":[{\"title\":\"" + title + "\",\"description\":\"" + desc + "\",\"url\":\"" + url + "\",\"picurl\":\"" + pic + "\"}]}}"
+	go custom.Send(tmpjson, section.GetAccessTokenFromRedis(wxid))
+
+}
+
 //SendMessagePic 发送客服消息 图文消息
 func SendMessagePic(wxid, openid, mediaid, pic string) {
 	obj := custom.NewImage(wxid, openid, mediaid, "")
