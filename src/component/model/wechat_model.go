@@ -139,7 +139,8 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 		{ // 菜单点击
 			tmp := menu.GetClickEvent(mixedMsg)
 			if tmp.EventKey == "sendNews" {
-				SendMessageNews(mixedMsg.ToUserName, mixedMsg.FromUserName, "测试文章", "hello worl 这是一条充满魔咒的图文", "http://www.baidu.com", "http://mmbiz.qpic.cn/mmbiz_png/rGGaK9sQCufw4bTESEXUBDoibyfglgrdLmHZo3rUrDo1PQqqf28XQcx7CDgxfaibPSYTDdTuo4r5bg92XIv4avQA/0")
+				url := "http://www.91coolshe.com/m/binds/new?appid=" + mixedMsg.AppId + "&openid=" + mixedMsg.ToUserName
+				SendMessageNews(mixedMsg.ToUserName, mixedMsg.FromUserName, "账号绑定", "欢迎使用推推平台推广", url, "http://mmbiz.qpic.cn/mmbiz_png/rGGaK9sQCufw4bTESEXUBDoibyfglgrdLmHZo3rUrDo1PQqqf28XQcx7CDgxfaibPSYTDdTuo4r5bg92XIv4avQA/0")
 			}
 		}
 
