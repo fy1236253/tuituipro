@@ -140,7 +140,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 			tmp := menu.GetClickEvent(mixedMsg)
 
 			if tmp.EventKey == "sendNews" {
-				url := "http://www.91coolshe.com/m/binds/new?appid=" + mixedMsg.ToUserName + "&openid=" + mixedMsg.FromUserName
+				url := "http://www.91coolshe.com/m/binds/new?appid=" + mixedMsg.ToUserName + "\u0026openid=" + mixedMsg.FromUserName
 				log.Println(url)
 				SendMessageNews(mixedMsg.ToUserName, mixedMsg.FromUserName, "账号绑定", "欢迎使用推推平台推广", url, "http://mmbiz.qpic.cn/mmbiz_png/rGGaK9sQCufw4bTESEXUBDoibyfglgrdLmHZo3rUrDo1PQqqf28XQcx7CDgxfaibPSYTDdTuo4r5bg92XIv4avQA/0")
 			}
