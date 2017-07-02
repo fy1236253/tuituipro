@@ -95,7 +95,7 @@ func ConfigWebHTTP() {
 		info, _ := json.Marshal(respdata)
 		section.ReturnAuthorizerInfo(string(info), tuiCode)
 		// log.Println(string(info))
-		addr := "http://www.91coolshe.com/main"
+		addr := "http://www.91coolshe.com/merchant/home"
 		http.Redirect(w, r, addr, 302)
 		return
 	})
