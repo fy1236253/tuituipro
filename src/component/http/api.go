@@ -54,6 +54,7 @@ func ConfigAPIRoutes() {
 			result, _ := ioutil.ReadAll(r.Body)
 			r.Body.Close()
 			log.Println(string(result))
+			r.FormValue("wxid")
 			var newsInfo section.SendNewsInfo
 			json.Unmarshal(result, &newsInfo)
 			model.SendMessageNews(newsInfo.WxID, newsInfo.OpenID, newsInfo.Title, newsInfo.Desc, newsInfo.URL, newsInfo.PIC)
