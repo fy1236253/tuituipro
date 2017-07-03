@@ -55,6 +55,10 @@ func ConfigAPIRoutes() {
 			desc := r.FormValue("desc")
 			url := r.FormValue("url")
 			pic := r.FormValue("pic")
+			if wxid == "" || openid == "" {
+				log.Println("[error]:图文消息的参数不正确")
+				return
+			}
 			model.SendMessageNews(wxid, openid, title, desc, url, pic)
 		}
 	})

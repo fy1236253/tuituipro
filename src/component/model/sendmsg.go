@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"component/section"
 	"encoding/json"
-	"log"
 	"mp/message/custom"
 )
 
@@ -41,14 +40,12 @@ func SendMessageNews(wxid, openid, title, desc, url, pic string) {
 	}
 
 	articles := []custom.Article{art}
-	log.Println(articles)
 	obj := custom.NewNews(wxid, openid, articles, "")
 
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	json.NewEncoder(buf).Encode(obj)
 	tmpjson := buf.String()
-	log.Println(tmpjson)
 	go custom.Send(tmpjson, section.GetAccessTokenFromRedis(wxid))
 }
 

@@ -3,6 +3,7 @@ package custom
 import (
 	"errors"
 	"fmt"
+	"log"
 )
 
 const (
@@ -244,7 +245,7 @@ func NewNews(wxid, toUser string, articles []Article, kfAccount string) (news *N
 		},
 	}
 	news.News.Articles = articles
-
+	log.Println(news)
 	if kfAccount != "" {
 		news.CustomService = &CustomService{
 			KfAccount: kfAccount,
