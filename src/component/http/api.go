@@ -2,6 +2,7 @@ package http
 
 import (
 	"component/g"
+	"component/model"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -53,12 +54,12 @@ func ConfigAPIRoutes() {
 			r.Body.Close()
 			log.Println(string(result))
 			wxid := r.FormValue("wxid")
-			wxids := r.PostFormValue("wxid")
-			log.Println(wxid)
-			log.Println(wxids)
-			// var newsInfo section.SendNewsInfo
-			// json.Unmarshal(result, &newsInfo)
-			// model.SendMessageNews(newsInfo.WxID, newsInfo.OpenID, newsInfo.Title, newsInfo.Desc, newsInfo.URL, newsInfo.PIC)
+			openid := r.FormValue("openid")
+			title := r.FormValue("openid")
+			desc := r.FormValue("desc")
+			url := r.FormValue("url")
+			pic := r.FormValue("pic")
+			model.SendMessageNews(wxid, openid, title, desc, url, pic)
 		}
 	})
 
