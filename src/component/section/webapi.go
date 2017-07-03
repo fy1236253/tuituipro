@@ -5,6 +5,8 @@ import (
 
 	"log"
 
+	"encoding/json"
+
 	"github.com/toolkits/net/httplib"
 )
 
@@ -24,12 +26,14 @@ func ReturnAuthorizerInfo(info, tuiCode string) {
 }
 
 // IsBindInfo 判断是否绑定
-func IsBindInfo(wxid, openid string) {
+func IsBindInfo(wxid, openid string) (respson *BindInfoRes) {
 	addr := "http://127.0.0.1:4200/binds/user?wxid=" + wxid + "&openid=" + openid
 	req := httplib.Get(addr).SetTimeout(5*time.Second, 1*time.Minute)
 	resp, err := req.String()
 	if err != nil {
 		log.Println("[error]:", err)
 	}
-	log.Println(resp)
+	json.Unmarshal([]byte(resp), &respson)
+	log.Println(respson.Res)
+	return respson
 }
