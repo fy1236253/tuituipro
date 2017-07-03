@@ -4,6 +4,7 @@ import (
 	"component/g"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -45,4 +46,15 @@ func ConfigAPIRoutes() {
 		}
 		log.Println("保存成功" + head.Filename)
 	})
+	http.HandleFunc("/api/v1/send/news", func(w http.ResponseWriter, r *http.Request) {
+
+		if r.Method == "POST" {
+			result, _ := ioutil.ReadAll(r.Body)
+			r.Body.Close()
+			log.Println(string(result))
+			// json.Unmarshal(result, &f)
+			// model.SendMessageNews(wxid, openid, title, desc, url, pic)
+		}
+	})
+
 }
