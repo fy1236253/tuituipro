@@ -3,9 +3,11 @@ package http
 import (
 	"component/g"
 	"component/model"
+	"component/section"
 	"fmt"
 	"io"
 	"log"
+	"mp/account"
 	"net/http"
 	"net/url"
 	"os"
@@ -47,6 +49,7 @@ func ConfigAPIRoutes() {
 		log.Println("保存成功" + head.Filename)
 	})
 	http.HandleFunc("/component/api/v1/send/news", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("---> /component/api/v1/send/news")
 		r.ParseForm()
 		if r.Method == "POST" {
 			wxid := r.FormValue("wxid")
@@ -61,6 +64,28 @@ func ConfigAPIRoutes() {
 			}
 			model.SendMessageNews(wxid, openid, title, desc, url, pic)
 		}
+	})
+	http.HandleFunc("/component/api/v1/qrcode", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("---> /api/v1/qrcode")
+		queryValues, err := url.ParseQuery(r.URL.RawQuery)
+		log.Println("ParseQuery", queryValues)
+		if err != nil {
+			log.Println("[ERROR] URL.RawQuery", err)
+			w.WriteHeader(400)
+			return
+		}
+		sence := queryValues.Get("sence")
+		wxid := queryValues.Get("wxid")
+		ttl := 604800 //默认30天有效期
+		qr, e := account.CreateTemporaryQRCode(sence, ttl, section.GetAccessTokenFromRedis(wxid))
+		if e == nil {
+			data["qrurl"] = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + url.QueryEscape(qr.Ticket)
+			log.Println(data)
+			RenderDataJson(w, data)
+			return
+		}
+		AutoRender(w, nil, e) // 错误信息提示
+		return
 	})
 
 }

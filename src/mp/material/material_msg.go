@@ -16,13 +16,3 @@ type Article struct {
 	ShowCoverPic     int    `json:"show_cover_pic"`               // 必须; 是否显示封面, 0为false, 即不显示, 1为true, 即显示
 	URL              string `json:"url,omitempty"`                // !!!创建的时候不需要此参数!!! 图文页的URL, 文章创建成功以后, 会由微信自动生成
 }
-
-// SendNewsInfo 发送图文消息时需要的参数
-type SendNewsInfo struct {
-	WxID   string `json:"wxid"`
-	OpenID string `json:"openid"`
-	Title  string `json:"title"`
-	Desc   string `json:"desc"` //描述
-	URL    string `json:"url"`
-	PIC    string `json:"pic"` //图片地址
-}

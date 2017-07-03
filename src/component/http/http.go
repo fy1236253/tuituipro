@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"path/filepath"
+	"time"
 )
 
 // Start 路由相关的启动
@@ -52,4 +53,28 @@ func RenderXML(w http.ResponseWriter, v interface{}) {
 func RenderText(w http.ResponseWriter, s string) {
 	w.Header().Set("Content-Type", "application/text; charset=UTF-8")
 	w.Write([]byte(s))
+}
+func RenderDataJson(w http.ResponseWriter, data interface{}) {
+	RenderJson(w, Dto{Msg: "success", Ts: time.Now().Format("20060102150405"), Data: data})
+}
+
+func RenderMsgJson(w http.ResponseWriter, msg string) {
+	RenderJson(w, map[string]string{"msg": msg})
+}
+
+func AutoRender(w http.ResponseWriter, data interface{}, err error) {
+	if err != nil {
+		RenderMsgJson(w, err.Error())
+		return
+	}
+	RenderDataJson(w, data)
+}
+
+func StdRender(w http.ResponseWriter, data interface{}, err error) {
+	if err != nil {
+		w.WriteHeader(400)
+		RenderMsgJson(w, err.Error())
+		return
+	}
+	RenderJson(w, data)
 }
