@@ -3,6 +3,7 @@ package http
 import (
 	"cfg"
 	"component/g"
+	"encoding/json"
 	"encoding/xml"
 	"log"
 	"net/http"
@@ -31,6 +32,12 @@ func Start() {
 	log.Fatalln(s.ListenAndServe())
 }
 
+type Dto struct {
+	Msg  string      `json:"msg"`
+	Ts   string      `json:"ts"` // 时间戳
+	Data interface{} `json:"data"`
+}
+
 //RenderText200 只返回200和描述
 func RenderText200(w http.ResponseWriter, s string) {
 	w.Header().Set("Content-Type", "application/text; charset=UTF-8")
@@ -53,6 +60,15 @@ func RenderXML(w http.ResponseWriter, v interface{}) {
 func RenderText(w http.ResponseWriter, s string) {
 	w.Header().Set("Content-Type", "application/text; charset=UTF-8")
 	w.Write([]byte(s))
+}
+func RenderJson(w http.ResponseWriter, v interface{}) {
+	bs, err := json.Marshal(v)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.Write(bs)
 }
 func RenderDataJson(w http.ResponseWriter, data interface{}) {
 	RenderJson(w, Dto{Msg: "success", Ts: time.Now().Format("20060102150405"), Data: data})
