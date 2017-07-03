@@ -2,9 +2,6 @@ package http
 
 import (
 	"component/g"
-	"component/model"
-	"component/section"
-	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -56,10 +53,12 @@ func ConfigAPIRoutes() {
 			r.Body.Close()
 			log.Println(string(result))
 			wxid := r.FormValue("wxid")
+			wxids := r.PostFormValue("wxid")
 			log.Println(wxid)
-			var newsInfo section.SendNewsInfo
-			json.Unmarshal(result, &newsInfo)
-			model.SendMessageNews(newsInfo.WxID, newsInfo.OpenID, newsInfo.Title, newsInfo.Desc, newsInfo.URL, newsInfo.PIC)
+			log.Println(wxids)
+			// var newsInfo section.SendNewsInfo
+			// json.Unmarshal(result, &newsInfo)
+			// model.SendMessageNews(newsInfo.WxID, newsInfo.OpenID, newsInfo.Title, newsInfo.Desc, newsInfo.URL, newsInfo.PIC)
 		}
 	})
 
