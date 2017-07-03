@@ -5,7 +5,6 @@ import (
 	"component/model"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -50,12 +49,9 @@ func ConfigAPIRoutes() {
 	http.HandleFunc("/component/api/v1/send/news", func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		if r.Method == "POST" {
-			result, _ := ioutil.ReadAll(r.Body)
-			r.Body.Close()
-			log.Println(string(result))
 			wxid := r.FormValue("wxid")
 			openid := r.FormValue("openid")
-			title := r.FormValue("openid")
+			title := r.FormValue("title")
 			desc := r.FormValue("desc")
 			url := r.FormValue("url")
 			pic := r.FormValue("pic")
