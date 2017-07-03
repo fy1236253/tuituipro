@@ -50,6 +50,7 @@ func ConfigAPIRoutes() {
 		log.Println("保存成功" + head.Filename)
 	})
 	http.HandleFunc("/component/api/v1/send/news", func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
 		if r.Method == "POST" {
 			result, _ := ioutil.ReadAll(r.Body)
 			r.Body.Close()
