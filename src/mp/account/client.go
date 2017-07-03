@@ -140,8 +140,6 @@ func CreateTemporaryQRCode(Scene string, ExpireSeconds int, access_token string)
 		log.Println("[ERROR]", result)
 		return
 	}
-
-	result.TemporaryQRCode.SceneId = SceneId
 	qrcode = &result.TemporaryQRCode
 	return
 }
