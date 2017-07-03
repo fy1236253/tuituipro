@@ -3,12 +3,12 @@ package http
 import (
 	"component/g"
 	"component/model"
+	"component/section"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
-	"mp/material"
 	"net/http"
 	"net/url"
 	"os"
@@ -54,7 +54,7 @@ func ConfigAPIRoutes() {
 			result, _ := ioutil.ReadAll(r.Body)
 			r.Body.Close()
 			log.Println(string(result))
-			var newsInfo material.SendNewsInfo
+			var newsInfo section.SendNewsInfo
 			json.Unmarshal(result, &newsInfo)
 			model.SendMessageNews(newsInfo.WxID, newsInfo.OpenID, newsInfo.Title, newsInfo.Desc, newsInfo.URL, newsInfo.PIC)
 		}

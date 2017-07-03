@@ -53,3 +53,13 @@ type AuthorizerInfo struct {
 type RespData struct {
 	AuthorizerInfo *AuthorizerInfo `json:"authorizer_info"`
 }
+
+// SendNewsInfo 发送图文消息时需要的参数
+type SendNewsInfo struct {
+	WxID   string `json:"wxid"`
+	OpenID string `json:"openid"`
+	Title  string `json:"title"`
+	Desc   string `json:"desc"` //描述
+	URL    string `json:"url"`
+	PIC    string `json:"pic"` //图片地址
+}
