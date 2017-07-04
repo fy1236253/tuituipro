@@ -105,16 +105,16 @@ func CreateTemporaryQRCode(Scene string, ExpireSeconds int, access_token string)
 		ActionName    string `json:"action_name"`
 		ActionInfo    struct {
 			Scene struct {
-				sceneStr string `json:"scene_str"`
+				SceneStr string `json:"scene_str"`
 			} `json:"scene"`
 		} `json:"action_info"`
 	}
 	request.ExpireSeconds = ExpireSeconds
 	request.ActionName = "QR_SCENE"
-	request.ActionInfo.Scene.sceneStr = Scene
+	request.ActionInfo.Scene.SceneStr = Scene
 
 	incompleteURL := "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=" + url.QueryEscape(access_token)
-
+	log.Println(request)
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	json.NewEncoder(buf).Encode(request)
