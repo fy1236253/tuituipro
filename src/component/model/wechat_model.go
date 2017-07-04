@@ -120,8 +120,9 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 	// 关注
 	case request.EventTypeSubscribe:
 		{
-			// obj := request.GetSubscribeByScanEvent(mixedMsg)
-			log.Println(mixedMsg.ScanCodeInfo)
+			obj := request.GetSubscribeByScanEvent(mixedMsg)
+			sence, _ := obj.Scene()
+			log.Println(sence)
 			log.Println(mixedMsg)
 		}
 

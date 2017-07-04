@@ -80,6 +80,10 @@ func ConfigAPIRoutes() {
 		ttl := 604800 //默认30天有效期
 		data := map[string]string{}
 		data["sence"] = queryValues.Get("sence")
+		if sence == "" {
+			RenderJson(w, "sence为空")
+			return
+		}
 		qr, e := account.CreateTemporaryQRCode(sence, ttl, section.GetAccessTokenFromRedis(wxid))
 		if e == nil {
 			data["qrurl"] = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" + url.QueryEscape(qr.Ticket)
