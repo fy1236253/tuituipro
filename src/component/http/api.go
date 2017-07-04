@@ -76,6 +76,7 @@ func ConfigAPIRoutes() {
 		}
 		sence := queryValues.Get("sence")
 		wxid := queryValues.Get("wxid")
+		log.Println(sence)
 		ttl := 604800 //默认30天有效期
 		data := map[string]string{}
 		data["sence"] = queryValues.Get("sence")
