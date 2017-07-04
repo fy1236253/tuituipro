@@ -34,6 +34,6 @@ func IsBindInfo(wxid, openid string) (respson *BindInfoRes) {
 		log.Println("[error]:", err)
 	}
 	json.Unmarshal([]byte(resp), &respson)
-	log.Println(respson.Res)
+	log.Println(respson)
 	return respson
 }
