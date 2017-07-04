@@ -123,7 +123,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 			obj := request.GetSubscribeByScanEvent(mixedMsg)
 			sence, _ := obj.Scene()
 			log.Println(sence)
-			log.Println(mixedMsg)
+
 		}
 
 	// 取消关注
@@ -147,7 +147,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 				log.Println(url)
 				resp := section.IsBindInfo(mixedMsg.ToUserName, mixedMsg.FromUserName)
 				if resp.Res == "success" {
-					if resp.Message == "1" {
+					if resp.Message == 1 {
 						SendMessageNewSpecial(mixedMsg.ToUserName, mixedMsg.FromUserName, resp.Title, resp.Desc, resp.URL, resp.PIC)
 					} else {
 						SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "当前没有活动推广！敬请期待吧")

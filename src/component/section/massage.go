@@ -66,7 +66,7 @@ type SendNewsInfo struct {
 
 // BindInfoRes 判断是否绑定的反馈信息
 type BindInfoRes struct {
-	Message string `json:"message"`
+	Message int    `json:"message"`
 	Res     string `json:"res"`
 	Title   string `json:"title"`
 	Desc    string `json:"desc"` //描述
