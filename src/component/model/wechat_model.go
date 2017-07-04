@@ -121,7 +121,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 	case request.EventTypeSubscribe:
 		{
 			obj := request.GetSubscribeByScanEvent(mixedMsg)
-			log.Println(obj)
+			log.Println(obj.EventKey)
 		}
 
 	// 取消关注
