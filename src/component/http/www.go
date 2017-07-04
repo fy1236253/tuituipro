@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"net/url"
 	"path/filepath"
+	"util"
 
 	"github.com/toolkits/file"
 )
@@ -117,5 +118,10 @@ func ConfigWebHTTP() {
 			return
 		}
 		log.Println(code, state)
+		appid := "wxb7f7a24ef49a4263"
+		appsecret := "885b9d333f54fe5795e38689212a7086"
+		openid, token := util.GetAccessTokenFromCode(appid, appsecret, code)
+		log.Println(openid)
+		log.Println(token)
 	})
 }

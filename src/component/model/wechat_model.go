@@ -144,7 +144,11 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 				log.Println(url)
 				resp := section.IsBindInfo(mixedMsg.ToUserName, mixedMsg.FromUserName)
 				if resp.Res == "success" {
-					SendMessageNewSpecial(mixedMsg.ToUserName, mixedMsg.FromUserName, resp.Title, resp.Desc, resp.URL, resp.PIC)
+					if resp.Message == "1" {
+						SendMessageNewSpecial(mixedMsg.ToUserName, mixedMsg.FromUserName, resp.Title, resp.Desc, resp.URL, resp.PIC)
+					} else {
+						SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "当前没有活动推广！敬请期待吧")
+					}
 				} else {
 					SendMessageNewSpecial(mixedMsg.ToUserName, mixedMsg.FromUserName, "账号绑定", "请绑定你的推推账号", url, "http://mmbiz.qpic.cn/mmbiz_png/rGGaK9sQCufw4bTESEXUBDoibyfglgrdLmHZo3rUrDo1PQqqf28XQcx7CDgxfaibPSYTDdTuo4r5bg92XIv4avQA/0")
 				}
