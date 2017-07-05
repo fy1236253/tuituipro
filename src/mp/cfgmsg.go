@@ -15,7 +15,6 @@ type GlobalConfig struct {
 	WeixinPay     *WeixinPayConfig `json:"weixinpay"`
 	Admins        []*AdminsConfig  `json:"admins"`
 	TuiKe         *TuiKeConfig     `json:"tuike"`
-	WXPay         *WeixinPayConfig `json:"weixinpay"`
 }
 
 // WeixinPayConfig 微信支付
