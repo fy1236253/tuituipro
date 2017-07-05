@@ -5,14 +5,12 @@ type GlobalConfig struct {
 	Debug         bool             `json:"debug"`
 	Logs          string           `json:"logs"`
 	AdMsg         string           `json:"ad-msg"`
-	HTTP          *HTTPConfig      `json:"http"`
+	HTTP          HTTPConfig       `json:"http"`
 	Amqp          *AmqpConfig      `json:"amqp"`
 	Redis         *RedisConfig     `json:"redis"`
 	RedisLocalNet *RedisConfig     `json:"redis-local-net"`
 	DB            *DBConfig        `json:"db"`
 	Worker        *WorkerConfig    `json:"worker"`
-	Wechats       []*WechatConfig  `json:"wechats"`
-	Admins        []*AdminsConfig  `json:"admins"`
 	TuiKe         *TuiKeConfig     `json:"tuike"`
 	WeixinPay     *WeixinPayConfig `json:"weixinpay"`
 }

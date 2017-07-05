@@ -1,0 +1,23 @@
+PID.33459 2017/07/05 23:44:49 http.go:29: http.Start ok, listening on 127.0.0.1:6062
+PID.33459 2017/07/05 23:45:39 main.go:48: all service stopping...
+PID.33459 2017/07/05 23:45:39 main.go:56: all service stop ok 
+PID.33613 2017/07/05 23:45:41 main.go:44: 
+PID.33613 2017/07/05 23:45:41 http.go:29: http.Start ok, listening on 127.0.0.1:6062
+PID.33613 2017/07/05 23:46:11 main.go:49: all service stopping...
+PID.33613 2017/07/05 23:46:11 main.go:57: all service stop ok 
+PID.33771 2017/07/05 23:46:15 main.go:44: &{true log.log  0xc4200ce960 0xc4200144c0 0xc4200118f0 <nil> 0xc4200cea60 0xc42000d718 [0xc42001a1b0] 0xc420014540 [] <nil>}
+PID.33771 2017/07/05 23:46:15 http.go:29: http.Start ok, listening on 127.0.0.1:6062
+PID.33771 2017/07/05 23:48:32 main.go:49: all service stopping...
+PID.33771 2017/07/05 23:48:32 main.go:57: all service stop ok 
+PID.34196 2017/07/05 23:50:55 main.go:44: &{true log.log  0xc4200e2780 0xc42007a380 0xc42007f7a0 <nil> 0xc4200e2880 0xc42007d5c8 [] <nil> [] <nil>}
+PID.34196 2017/07/05 23:50:55 http.go:29: http.Start ok, listening on 127.0.0.1:6062
+PID.34196 2017/07/05 23:51:26 main.go:49: all service stopping...
+PID.34196 2017/07/05 23:51:26 main.go:57: all service stop ok 
+PID.34319 2017/07/05 23:51:35 main.go:44: &{true log.log  0xc4200f0780 0xc42007a380 0xc42007f7a0 <nil> 0xc4200f0880 0xc42007d5c8 [] <nil> [] <nil>}
+PID.34319 2017/07/05 23:51:35 http.go:29: http.Start ok, listening on 127.0.0.1:6062
+PID.34319 2017/07/05 23:52:36 main.go:49: all service stopping...
+PID.34319 2017/07/05 23:52:36 main.go:57: all service stop ok 
+PID.34539 2017/07/05 23:52:47 main.go:44: &{true log.log  0xc4200ce980 0xc4200144c0 0xc4200118c0 <nil> 0xc4200cea80 0xc420013708 [] <nil> [] <nil>}
+PID.34539 2017/07/05 23:52:47 http.go:29: http.Start ok, listening on 127.0.0.1:6062
+PID.34539 2017/07/05 23:53:52 main.go:49: all service stopping...
+PID.34539 2017/07/05 23:53:52 main.go:57: all service stop ok 
