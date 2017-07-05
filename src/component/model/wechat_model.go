@@ -105,7 +105,7 @@ func ProcessWechatText(mixedMsg *message.MixedMessage) {
 		}
 	case "红牛拿来":
 		{
-			// WeixinPay("13618075393", mixedMsg.FromUserName, "1")
+			WeixinPay("13618075393", mixedMsg.FromUserName, "1")
 			go SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "放下屠刀立地成佛！")
 
 		}

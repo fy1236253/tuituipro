@@ -68,7 +68,7 @@ func WeixinPay(uuid, openid, val string) {
 	// 	Remark:      "新年红包",
 	// 	NonceStr:    nonce,
 	// }
-	var o *WeixinRedPack
+	var o WeixinRedPack
 	o.MchBillno = uuid
 	o.MchId = "1484374812"
 	o.Wxappid = "wxb7f7a24ef49a4263"
@@ -110,7 +110,7 @@ func WeixinPay(uuid, openid, val string) {
 	log.Println("weixin pay result", resp, openid)
 }
 
-func sign(o *WeixinRedPack, key string) string {
+func sign(o WeixinRedPack, key string) string {
 	strs := sort.StringSlice{"mch_billno=" + o.MchBillno,
 		"mch_id=" + o.MchId,
 		"wxappid=" + o.Wxappid,
