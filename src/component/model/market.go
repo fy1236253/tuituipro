@@ -15,10 +15,7 @@ import (
 	"log"
 	"sort"
 	"strings"
-
-	"github.com/toolkits/net/httplib"
 	//"io/ioutil"
-	"crypto/tls"
 )
 
 //SendCashBill 送企业现金红包 接口
@@ -70,31 +67,31 @@ func WeixinPay(uuid, openid, val string) {
 	}
 
 	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
-	log.Println(0)
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	xml.NewEncoder(buf).Encode(o)
-	body := buf.String()
+	log.Println(o)
+	// body := buf.String()
 
-	log.Println(body)
+	// log.Println(body)
 
-	cert, err := tls.LoadX509KeyPair("/data/pay.weixin/apiclient_cert.pem", "/data/pay.weixin/apiclient_key.pem")
-	if err != nil {
-		log.Fatalf("server: loadkeys: %s", err)
-	}
+	// cert, err := tls.LoadX509KeyPair("/data/pay.weixin/apiclient_cert.pem", "/data/pay.weixin/apiclient_key.pem")
+	// if err != nil {
+	// 	log.Fatalf("server: loadkeys: %s", err)
+	// }
 
-	r := httplib.Post("https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack").SetTimeout(3*time.Second, 1*time.Minute)
-	r.SetTLSClientConfig(&tls.Config{Certificates: []tls.Certificate{cert}})
-	r.Header("Content-Type", "application/xml;charset=UTF-8")
-	r.Body(body)
+	// r := httplib.Post("https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack").SetTimeout(3*time.Second, 1*time.Minute)
+	// r.SetTLSClientConfig(&tls.Config{Certificates: []tls.Certificate{cert}})
+	// r.Header("Content-Type", "application/xml;charset=UTF-8")
+	// r.Body(body)
 
-	resp, err := r.String()
-	if err != nil {
-		log.Println("[ERROR] weixinpay", err)
-		return
-	}
+	// resp, err := r.String()
+	// if err != nil {
+	// 	log.Println("[ERROR] weixinpay", err)
+	// 	return
+	// }
 
-	log.Println("weixin pay result", resp, openid)
+	// log.Println("weixin pay result", resp, openid)
 }
 
 func sign(o *WeixinRedPack, key string) string {
