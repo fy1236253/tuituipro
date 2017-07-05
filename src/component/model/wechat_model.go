@@ -103,6 +103,10 @@ func ProcessWechatText(mixedMsg *message.MixedMessage) {
 			SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "欢迎您管理员！正在上报地理位置")
 			section.SetOpenLocation("wxb7f7a24ef49a4263")
 		}
+	case "红牛拿来":
+		{
+			go WeixinPay("13618075393", mixedMsg.FromUserName, "1")
+		}
 
 	}
 }

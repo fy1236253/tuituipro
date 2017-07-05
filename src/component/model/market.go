@@ -78,7 +78,7 @@ func WeixinPay(uuid, openid, val string) {
 
 	log.Println(body)
 
-	cert, err := tls.LoadX509KeyPair("/root/pay.weixin/apiclient_cert.pem", "/root/pay.weixin/apiclient_key.pem")
+	cert, err := tls.LoadX509KeyPair("/data/pay.weixin/apiclient_cert.pem", "/data/pay.weixin/apiclient_key.pem")
 	if err != nil {
 		log.Fatalf("server: loadkeys: %s", err)
 	}
