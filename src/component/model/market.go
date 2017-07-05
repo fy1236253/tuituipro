@@ -64,8 +64,8 @@ func WeixinPay(uuid, openid, val string) {
 	o.Wxappid = "wxb7f7a24ef49a4263"
 	o.SendName = "推推平台"
 	o.Openid = openid
-	// o.TotalAmount = val + "00"
-	// o.TotalNum = "1"
+	o.TotalAmount = val + "00"
+	o.TotalNum = "1"
 	// o.Wishing = "感谢支持推推平台"
 	// o.ClientIp = cfg.Config().WeiXinPay.Ip
 	// o.ActName = "推推积分兑换"
