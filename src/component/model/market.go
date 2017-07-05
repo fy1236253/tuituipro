@@ -3,7 +3,6 @@
 package model
 
 import (
-	"cfg"
 	"crypto/md5"
 	"encoding/hex"
 	"log"
@@ -68,7 +67,7 @@ func WeixinPay(uuid, openid, val string) {
 	o.TotalAmount = val + "00"
 	o.TotalNum = "1"
 	o.Wishing = "感谢支持推推平台"
-	o.ClientIp = cfg.Config().WeiXinPay.Ip
+	// o.ClientIp = cfg.Config().WeiXinPay.Ip
 	o.ActName = "推推积分兑换"
 	o.Remark = "积分兑换"
 	// o.NonceStr = nonce
