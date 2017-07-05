@@ -53,7 +53,6 @@ func WeixinPay(uuid, openid, val string) {
 	log.Println("=========wexinpay")
 	rand.Seed(time.Now().UnixNano())
 	nonce := strconv.Itoa(rand.Intn(999999999))
-
 	o := &WeixinRedPack{
 		Sign:        "",
 		MchBillno:   uuid,
@@ -69,8 +68,9 @@ func WeixinPay(uuid, openid, val string) {
 		Remark:      "新年红包",
 		NonceStr:    nonce,
 	}
-	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
 
+	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
+	log.Println(0)
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	xml.NewEncoder(buf).Encode(o)
