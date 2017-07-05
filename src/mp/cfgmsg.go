@@ -12,9 +12,9 @@ type GlobalConfig struct {
 	DB            *DBConfig        `json:"db"`
 	Worker        *WorkerConfig    `json:"worker"`
 	Wechats       []*WechatConfig  `json:"wechats"`
-	WeixinPay     *WeixinPayConfig `json:"weixinpay"`
 	Admins        []*AdminsConfig  `json:"admins"`
 	TuiKe         *TuiKeConfig     `json:"tuike"`
+	WeixinPay     *WeixinPayConfig `json:"weixinpay"`
 }
 
 // WeixinPayConfig 微信支付
