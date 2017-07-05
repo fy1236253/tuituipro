@@ -22,7 +22,7 @@ type GlobalConfig struct {
 type WeixinPayConfig struct {
 	Addr string `json:"addr"`
 	Key  string `json:"key"`
-	Ip   string `json:"ip"` // ip  白名单
+	IP   string `json:"ip"` // ip  白名单
 }
 
 //AdminsConfig 端口绑定
