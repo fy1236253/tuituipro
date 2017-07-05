@@ -123,7 +123,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 			obj := request.GetSubscribeByScanEvent(mixedMsg)
 			sence, _ := obj.Scene()
 			log.Println(sence)
-
+			section.SubscribeFeedback(mixedMsg.FromUserName, sence)
 		}
 
 	// 取消关注

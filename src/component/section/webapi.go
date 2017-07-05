@@ -37,3 +37,16 @@ func IsBindInfo(wxid, openid string) (respson *BindInfoRes) {
 	log.Println(string(resp))
 	return respson
 }
+
+// SubscribeFeedback 关注回调
+func SubscribeFeedback(openid, sence string) {
+	addr := "http://127.0.0.1:4200/subscribe/user"
+	req := httplib.Post(addr).SetTimeout(5*time.Second, 1*time.Minute)
+	req.Param("openid", openid)
+	req.Param("sence", sence)
+	resp, err := req.String()
+	if err != nil {
+		log.Println("[error]:", err)
+	}
+	log.Println(string(resp))
+}
