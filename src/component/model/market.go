@@ -3,7 +3,6 @@
 package model
 
 import (
-	"cfg"
 	"math/rand"
 	"strconv"
 	"time"
@@ -64,18 +63,18 @@ func WeixinPay(uuid, openid, val string) {
 	// 	NonceStr:    nonce,
 	// }
 	var o WeixinRedPack
-	o.MchBillno = uuid
-	o.MchId = "1484374812"
-	o.Wxappid = "wxb7f7a24ef49a4263"
-	o.SendName = "推推平台"
-	o.Openid = openid
-	o.TotalAmount = val + "00"
-	o.TotalNum = "1"
-	o.Wishing = "感谢支持推推平台"
-	o.ClientIp = cfg.Config().WeiXinPay.Ip
-	o.ActName = "推推积分兑换"
-	o.Remark = "积分兑换"
-	o.NonceStr = nonce
+	// o.MchBillno = uuid
+	// o.MchId = "1484374812"
+	// o.Wxappid = "wxb7f7a24ef49a4263"
+	// o.SendName = "推推平台"
+	// o.Openid = openid
+	// o.TotalAmount = val + "00"
+	// o.TotalNum = "1"
+	// o.Wishing = "感谢支持推推平台"
+	// o.ClientIp = cfg.Config().WeiXinPay.Ip
+	// o.ActName = "推推积分兑换"
+	// o.Remark = "积分兑换"
+	// o.NonceStr = nonce
 	log.Println(o)
 	// o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
 	// buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
