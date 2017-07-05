@@ -50,7 +50,7 @@ type WeixinRedPack struct {
 
 //WeixinPay 红包金额 val 元
 func WeixinPay(uuid, openid, val string) {
-
+	log.Println("=========wexinpay")
 	rand.Seed(time.Now().UnixNano())
 	nonce := strconv.Itoa(rand.Intn(999999999))
 
