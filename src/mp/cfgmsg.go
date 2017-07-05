@@ -15,6 +15,14 @@ type GlobalConfig struct {
 	WeixinPay     *WeixinPayConfig `json:"weixinpay"`
 	Admins        []*AdminsConfig  `json:"admins"`
 	TuiKe         *TuiKeConfig     `json:"tuike"`
+	WeiXinPay     *WeixinPayConfig `json:"weixinpay"`
+}
+
+// WeixinPayConfig 微信支付
+type WeixinPayConfig struct {
+	Addr string `json:"addr"`
+	Key  string `json:"key"`
+	Ip   string `json:"ip"` // ip  白名单
 }
 
 //AdminsConfig 端口绑定
@@ -77,12 +85,4 @@ type TuiKeConfig struct {
 	Aeskey                string `json:"Aeskey"`
 	AccessToken           string // 这个是通过接口请求获取到的
 	ComponentVerifyTicket string //接受微信服务器推送的ticket（每十分钟推一次）
-}
-
-//WeixinPayConfig 微信支付相关
-type WeixinPayConfig struct {
-	Addr string `json:"addr"`
-	Key  string `json:"key"`
-	IP   string `json:"ip"` // ip  白名单
-	P    int    `json:"p"`  // 中奖的概率  100  50  到 0
 }

@@ -34,7 +34,7 @@ func IsBindInfo(wxid, openid string) (respson *BindInfoRes) {
 		log.Println("[error]:", err)
 	}
 	json.Unmarshal([]byte(resp), &respson)
-	log.Println(string(resp))
+	log.Println(resp)
 	return respson
 }
 
@@ -48,5 +48,5 @@ func SubscribeFeedback(openid, sence string) {
 	if err != nil {
 		log.Println("[error]:", err)
 	}
-	log.Println(string(resp))
+	log.Println(resp)
 }

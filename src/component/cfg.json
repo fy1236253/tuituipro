@@ -31,14 +31,11 @@
             "Aeskey": "aeskey",
             "AutoAnswer": true,
             "Welcome": "欢迎来到云喇叭，网购炫货求点赞，上传宝贝试一试！（努力开发中...）"
-        },
-        {
-            "WxId": "gh_8ac8a8821eb8",
-            "AppId": "wxaccxxxx",
-            "Token": "weixin",
-            "Aeskey": "aeskey",
-            "AutoAnswer": true,
-            "Welcome": "欢迎来到云喇叭，网购炫货求点赞，上传宝贝试一试！（努力开发中...）"
         }
-    ]
+    ],
+    "weixinpay": {
+        "addr": "",
+        "ip": "",
+        "key": ""
+    }
 }
