@@ -3,7 +3,6 @@
 package model
 
 import (
-	"cfg"
 	"crypto/md5"
 	"encoding/hex"
 	"log"
@@ -75,7 +74,7 @@ func WeixinPay(uuid, openid, val string) {
 	o.ActName = "推推积分兑换"
 	o.Remark = "积分兑换"
 	o.NonceStr = nonce
-	log.Println(cfg.Config().WeiXinPay.Ip)
+	// log.Println(cfg.Config().WeiXinPay.Ip)
 	log.Println(o)
 	// o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
 	// buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
