@@ -8,10 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"bytes"
 	"crypto/md5"
 	"encoding/hex"
-	"encoding/xml"
 	"log"
 	"sort"
 	"strings"
@@ -65,12 +63,12 @@ func WeixinPay(uuid, openid, val string) {
 		Remark:      "新年红包",
 		NonceStr:    nonce,
 	}
-
-	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
-	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
-	buf.Reset()
-	xml.NewEncoder(buf).Encode(o)
 	log.Println(o)
+	// o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
+	// buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
+	// buf.Reset()
+	// xml.NewEncoder(buf).Encode(o)
+	// log.Println(o)
 	// body := buf.String()
 
 	// log.Println(body)
