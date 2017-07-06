@@ -76,13 +76,13 @@ func WeixinPay(uuid, openid, val string) {
 	o.TotalAmount = val + "00"
 	o.TotalNum = "1"
 	o.Wishing = "感谢支持推推平台"
-	o.ClientIp = cfg.Config().WeixinPay.IP
+	o.ClientIp = cfg.Config().WeiXinPay.IP
 	o.ActName = "推推积分兑换"
 	o.Remark = "积分兑换"
 	o.NonceStr = nonce
 	// log.Println(cfg.Config().WXPay)
 	log.Println(o)
-	o.Sign = sign(o, cfg.Config().WeixinPay.Key)
+	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	xml.NewEncoder(buf).Encode(o)
