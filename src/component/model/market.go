@@ -76,8 +76,8 @@ func WeixinPay(uuid, openid, val string) {
 	o.Remark = "积分兑换"
 	o.NonceStr = nonce
 	log.Println(cfg.Config().WeiXinPay.IP)
-	log.Println(o)
 	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
+	log.Println(o)
 	// buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	// buf.Reset()
 	// xml.NewEncoder(buf).Encode(o)
