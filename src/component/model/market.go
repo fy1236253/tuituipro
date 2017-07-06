@@ -9,6 +9,7 @@ import (
 	"log"
 	"math/rand"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 	//"io/ioutil"
@@ -45,7 +46,7 @@ type WeixinRedPack struct {
 func WeixinPay(uuid, openid, val string) {
 	log.Println("=========wexinpay")
 	rand.Seed(time.Now().UnixNano())
-	// nonce := strconv.Itoa(rand.Intn(999999999))
+	nonce := strconv.Itoa(rand.Intn(999999999))
 	// o := &WeixinRedPack{
 	// 	Sign:        "",
 	// 	MchBillno:   uuid,
@@ -66,14 +67,14 @@ func WeixinPay(uuid, openid, val string) {
 	o.MchId = "1484374812"
 	o.Wxappid = "wxb7f7a24ef49a4263"
 	o.SendName = "推推平台"
-	// o.Openid = openid
-	// o.TotalAmount = val + "00"
-	// o.TotalNum = "1"
-	// o.Wishing = "感谢支持推推平台"
-	// o.ClientIp = cfg.Config().WeiXinPay.IP
-	// o.ActName = "推推积分兑换"
-	// o.Remark = "积分兑换"
-	// o.NonceStr = nonce
+	o.Openid = openid
+	o.TotalAmount = val + "00"
+	o.TotalNum = "1"
+	o.Wishing = "感谢支持推推平台"
+	o.ClientIp = cfg.Config().WeiXinPay.IP
+	o.ActName = "推推积分兑换"
+	o.Remark = "积分兑换"
+	o.NonceStr = nonce
 	log.Println(cfg.Config().WeiXinPay.IP)
 	log.Println(o)
 	// o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
