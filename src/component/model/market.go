@@ -77,7 +77,7 @@ func WeixinPay(uuid, openid, val string) {
 	o.NonceStr = nonce
 	log.Println(cfg.Config().WeiXinPay.IP)
 	log.Println(o)
-	// o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
+	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
 	// buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	// buf.Reset()
 	// xml.NewEncoder(buf).Encode(o)
@@ -102,7 +102,7 @@ func WeixinPay(uuid, openid, val string) {
 	// log.Println("weixin pay result", resp, openid)
 }
 
-func sign(o *WeixinRedPack, key string) string {
+func sign(o WeixinRedPack, key string) string {
 	strs := sort.StringSlice{"mch_billno=" + o.MchBillno,
 		"mch_id=" + o.MchId,
 		"wxappid=" + o.Wxappid,
