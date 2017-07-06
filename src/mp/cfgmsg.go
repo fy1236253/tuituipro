@@ -2,15 +2,15 @@ package mp
 
 //GlobalConfig 微信配置结构体
 type GlobalConfig struct {
-	Debug     bool            `json:"debug"`
-	Logs      string          `json:"logs"`
-	HTTP      HTTPConfig      `json:"http"`
-	Amqp      AmqpConfig      `json:"amqp"`
-	Redis     RedisConfig     `json:"redis"`
-	DB        DBConfig        `json:"db"`
-	Worker    WorkerConfig    `json:"worker"`
-	TuiKe     TuiKeConfig     `json:"tuike"`
-	WeiXinPay WeixinPayConfig `json:"weixinpay"`
+	Debug     bool             `json:"debug"`
+	Logs      string           `json:"logs"`
+	HTTP      HTTPConfig       `json:"http"`
+	Amqp      *AmqpConfig      `json:"amqp"`
+	Redis     *RedisConfig     `json:"redis"`
+	DB        *DBConfig        `json:"db"`
+	Worker    *WorkerConfig    `json:"worker"`
+	TuiKe     *TuiKeConfig     `json:"tuike"`
+	WeiXinPay *WeixinPayConfig `json:"weixinpay"`
 }
 
 // WeixinPayConfig 微信支付
