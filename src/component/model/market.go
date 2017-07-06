@@ -68,7 +68,8 @@ func WeixinPay(uuid, openid, val string) {
 	// 	NonceStr:    nonce,
 	// }
 	var o WeixinRedPack
-	o.MchBillno = uuid
+	timestamp := time.Now().Unix()
+	o.MchBillno = uuid + strconv.FormatInt(timestamp, 10)
 	o.MchId = "1484374812"
 	o.Wxappid = "wxb7f7a24ef49a4263"
 	o.SendName = "推推平台"
