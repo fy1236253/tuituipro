@@ -61,7 +61,7 @@ func WeixinPay(uuid, openid, val string) {
 	// 	Remark:      "新年红包",
 	// 	NonceStr:    nonce,
 	// }
-	var o *WeixinRedPack
+	var o WeixinRedPack
 	o.MchBillno = uuid
 	o.MchId = "1484374812"
 	o.Wxappid = "wxb7f7a24ef49a4263"
