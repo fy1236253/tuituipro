@@ -50,7 +50,7 @@ type WeixinRedPack struct {
 }
 
 //WeixinPay 红包金额 val 元
-func WeixinPay(uuid, openid, val string) {
+func WeixinPay(uuid, openid, val string) string {
 	log.Println("=========wexinpay========")
 	rand.Seed(time.Now().UnixNano())
 	nonce := strconv.Itoa(rand.Intn(999999999))
@@ -70,13 +70,11 @@ func WeixinPay(uuid, openid, val string) {
 
 	log.Println(cfg.Config().WeiXinPay.IP)
 	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
-	log.Println(o)
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	xml.NewEncoder(buf).Encode(o)
 	log.Println(o)
 	body := buf.String()
-	log.Println(body)
 
 	cert, err := tls.LoadX509KeyPair("/data/pay.weixin/apiclient_cert.pem", "/data/pay.weixin/apiclient_key.pem")
 	if err != nil {
@@ -90,7 +88,7 @@ func WeixinPay(uuid, openid, val string) {
 	resp, err := r.String()
 	if err != nil {
 		log.Println("[ERROR] weixinpay", err)
-		return
+		return ""
 	}
 	var result SendCashResp
 	xml.Unmarshal([]byte(resp), &result)
@@ -105,6 +103,7 @@ func WeixinPay(uuid, openid, val string) {
 		io.WriteString(f, str)
 	}
 	log.Println("weixin pay result", resp, openid)
+	return result.ResultCode
 }
 
 func sign(o WeixinRedPack, key string) string {
