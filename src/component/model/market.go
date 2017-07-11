@@ -98,7 +98,7 @@ func WeixinPay(uuid, openid, val string) {
 	xml.Unmarshal([]byte(resp), &result)
 	if result.ResultCode == "SUCCESS" && result.ReturnCode == "SUCCESS" {
 		log.Printf("[success]send cash ok,openid:%s,amount:%d￥", result.Openid, result.TotalAmount/100)
-		f, err := os.Open("data/sendcash.log")
+		f, err := os.OpenFile("data/sendcash.log", os.O_APPEND|os.O_RDWR, 0666)
 		defer f.Close()
 		if err != nil {
 			log.Println(err)
