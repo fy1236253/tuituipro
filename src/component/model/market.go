@@ -18,6 +18,7 @@ import (
 
 	"github.com/toolkits/net/httplib"
 	//"io/ioutil"
+	"os"
 )
 
 //SendCashBill 送企业现金红包 接口
@@ -49,26 +50,12 @@ type WeixinRedPack struct {
 
 //WeixinPay 红包金额 val 元
 func WeixinPay(uuid, openid, val string) {
-	log.Println("=========wexinpay")
+	log.Println("=========wexinpay========")
 	rand.Seed(time.Now().UnixNano())
 	nonce := strconv.Itoa(rand.Intn(999999999))
-	// o := &WeixinRedPack{
-	// 	Sign:        "",
-	// 	MchBillno:   uuid,
-	// 	MchId:       "1484374812",
-	// 	Wxappid:     "wxb7f7a24ef49a4263",
-	// 	SendName:    "推推平台",
-	// 	Openid:      openid,
-	// 	TotalAmount: val + "00",
-	// 	TotalNum:    "1",
-	// 	Wishing:     "云喇叭祝大家恭喜发财",
-	// 	ClientIp:    cfg.Config().WeiXinPay.Ip, //"121.43.102.49",
-	// 	ActName:     "新年红包",
-	// 	Remark:      "新年红包",
-	// 	NonceStr:    nonce,
-	// }
 	var o WeixinRedPack
 	timestamp := time.Now().Unix()
+
 	o.MchBillno = uuid + strconv.FormatInt(timestamp, 10)
 	o.MchId = "1484374812"
 	o.Wxappid = "wxb7f7a24ef49a4263"
@@ -81,6 +68,7 @@ func WeixinPay(uuid, openid, val string) {
 	o.ActName = "推推积分兑换"
 	o.Remark = "积分兑换"
 	o.NonceStr = nonce
+
 	log.Println(cfg.Config().WeiXinPay.IP)
 	o.Sign = sign(o, cfg.Config().WeiXinPay.Key)
 	log.Println(o)
@@ -104,6 +92,19 @@ func WeixinPay(uuid, openid, val string) {
 	if err != nil {
 		log.Println("[ERROR] weixinpay", err)
 		return
+	}
+	var result SendCashResp
+	xml.Unmarshal([]byte(resp), &result)
+	if result.ResultCode == "SUCCESS" && result.ReturnCode == "SUCCESS" {
+		log.Printf("[success]send cash ok,openid:%s,amount:%d￥", result.Openid, result.TotalAmount/100)
+		f, err := os.Open("data/sendcash.log")
+		defer f.Close()
+		if err != nil {
+			log.Println(err)
+		}
+
+		str := "---------------\nopenid:" + openid + "\n" + "amount:" + strconv.Itoa(result.TotalAmount) + "time:" + time.Now().String()
+		f.WriteString(str)
 	}
 	log.Println("weixin pay result", resp, openid)
 }
@@ -137,4 +138,28 @@ func sign(o WeixinRedPack, key string) string {
 	//log.Println(sig)
 
 	return sig
+}
+
+// <xml>
+// <return_code><![CDATA[SUCCESS]]></return_code>
+// <return_msg><![CDATA[发放成功]]></return_msg>
+// <result_code><![CDATA[SUCCESS]]></result_code>
+// <err_code><![CDATA[SUCCESS]]></err_code>
+// <err_code_des><![CDATA[发放成功]]></err_code_des>
+// <mch_billno><![CDATA[tuitui1499741303]]></mch_billno>
+// <mch_id><![CDATA[1484374812]]></mch_id>
+// <wxappid><![CDATA[wxb7f7a24ef49a4263]]></wxappid>
+// <re_openid><![CDATA[ontOAv5udptsJSV8usz7bZ7JmQfQ]]></re_openid>
+// <total_amount>100</total_amount>
+// <send_listid><![CDATA[1000041701201707113000030659195]]></send_listid>
+// </xml>
+type SendCashResp struct {
+	XMLName     struct{} `xml:"xml"`
+	ReturnCode  string   `xml:"return_code"`
+	ResultCode  string   `xml:"result_code"`
+	ErrCode     string   `xml:"err_code"`
+	ErrCodeDes  string   `xml:"err_code_des"`
+	Openid      string   `xml:"re_openid"`
+	TotalAmount int      `xml:"total_amount"`
+	MchBillno   string   `xml:"mch_billno"`
 }

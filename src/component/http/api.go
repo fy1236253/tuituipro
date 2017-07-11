@@ -94,5 +94,19 @@ func ConfigAPIRoutes() {
 		AutoRender(w, nil, e) // 错误信息提示
 		return
 	})
+	http.HandleFunc("/component/api/v1/send/cash", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("---> /api/v1/qrcode")
+		queryValues, err := url.ParseQuery(r.URL.RawQuery)
+		if err != nil {
+			log.Println("[ERROR] URL.RawQuery", err)
+			w.WriteHeader(400)
+			return
+		}
+		log.Println("ParseQuery", queryValues)
+		openid := queryValues.Get("openid")
+		uuid := queryValues.Get("uuid")
+		val := queryValues.Get("val")
+		model.WeixinPay(uuid, openid, val)
+	})
 
 }
