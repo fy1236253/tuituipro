@@ -55,9 +55,7 @@ func WeixinPay(uuid, openid, val string) {
 	rand.Seed(time.Now().UnixNano())
 	nonce := strconv.Itoa(rand.Intn(999999999))
 	var o WeixinRedPack
-	timestamp := time.Now().Unix()
-
-	o.MchBillno = uuid + strconv.FormatInt(timestamp, 10)
+	o.MchBillno = uuid
 	o.MchId = "1484374812"
 	o.Wxappid = "wxb7f7a24ef49a4263"
 	o.SendName = "推推平台"

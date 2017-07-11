@@ -106,6 +106,9 @@ func ConfigAPIRoutes() {
 		openid := queryValues.Get("openid")
 		uuid := queryValues.Get("uuid")
 		val := queryValues.Get("val")
+		log.Println(openid)
+		log.Println(val)
+		log.Println(uuid)
 		model.WeixinPay(uuid, openid, val)
 	})
 
