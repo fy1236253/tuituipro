@@ -62,7 +62,7 @@ func WeixinPay(uuid, openid, val string) {
 	o.Wxappid = "wxb7f7a24ef49a4263"
 	o.SendName = "推推平台"
 	o.Openid = openid
-	o.TotalAmount = val + "00"
+	o.TotalAmount = val
 	o.TotalNum = "1"
 	o.Wishing = "感谢支持推推平台"
 	o.ClientIp = cfg.Config().WeiXinPay.IP
@@ -103,8 +103,7 @@ func WeixinPay(uuid, openid, val string) {
 		if err != nil {
 			log.Println(err)
 		}
-
-		str := "---------------\nopenid:" + openid + "\n" + "amount:" + strconv.Itoa(result.TotalAmount) + "time:" + time.Now().String()
+		str := "---------------\nopenid:" + openid + "\n" + "amount:" + strconv.Itoa(result.TotalAmount/100) + "\ntime:" + time.Now().String()
 		io.WriteString(f, str)
 	}
 	log.Println("weixin pay result", resp, openid)
