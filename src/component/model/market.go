@@ -18,6 +18,7 @@ import (
 
 	"github.com/toolkits/net/httplib"
 	//"io/ioutil"
+	"io"
 	"os"
 )
 
@@ -104,7 +105,7 @@ func WeixinPay(uuid, openid, val string) {
 		}
 
 		str := "---------------\nopenid:" + openid + "\n" + "amount:" + strconv.Itoa(result.TotalAmount) + "time:" + time.Now().String()
-		f.WriteString(str)
+		io.WriteString(f, str)
 	}
 	log.Println("weixin pay result", resp, openid)
 }
