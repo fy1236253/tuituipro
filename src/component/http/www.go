@@ -50,7 +50,7 @@ func ConfigWebHTTP() {
 			return
 		}
 		cfg := cfg.Config().TuiKe
-		reURL := "http://www.91coolshe.com/component/auth/callback?tuitui_code=" + queryValues.Get("tuitui_code")
+		reURL := "http://www.e7tuitui.com/component/auth/callback?tuitui_code=" + queryValues.Get("tuitui_code")
 		// reURL := "http://91coolshe.com"
 		preCode := section.GetPreAuthCode()
 		addr := "https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=" + cfg.AppID + "&pre_auth_code=" + preCode.Pre_auth_code + "&redirect_uri=" + url.QueryEscape(reURL)
@@ -96,7 +96,7 @@ func ConfigWebHTTP() {
 		info, _ := json.Marshal(respdata)
 		section.ReturnAuthorizerInfo(string(info), tuiCode)
 		// log.Println(string(info))
-		addr := "http://www.91coolshe.com/merchant/home"
+		addr := "http://www.e7tuitui.com/merchant/home"
 		http.Redirect(w, r, addr, 302)
 		return
 	})

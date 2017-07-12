@@ -1,0 +1,43 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;tuituipro&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../src/http" />
+      <root url="file://$PROJECT_DIR$/../src/db" />
+      <root url="file://$PROJECT_DIR$/../src/cron" />
+      <root url="file://$PROJECT_DIR$/../src/mp" />
+      <root url="file://$PROJECT_DIR$/../src/mq" />
+      <root url="file://$PROJECT_DIR$/../src/beegopro" />
+      <root url="file://$PROJECT_DIR$/../src/cfg" />
+      <root url="file://$PROJECT_DIR$/../src/github.com" />
+      <root url="file://$PROJECT_DIR$/../src/g" />
+      <root url="file://$PROJECT_DIR$/../src/golang.org" />
+      <root url="file://$PROJECT_DIR$/../src/wechat" />
+      <root url="file://$PROJECT_DIR$/../src/redis" />
+      <root url="file://$PROJECT_DIR$/../src/beepro" />
+      <root url="file://$PROJECT_DIR$/../src/component" />
+      <root url="file://$PROJECT_DIR$/../src/dezhen" />
+      <root url="file://$PROJECT_DIR$/../src/util" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../src/http" />
+      <root url="file://$PROJECT_DIR$/../src/db" />
+      <root url="file://$PROJECT_DIR$/../src/cron" />
+      <root url="file://$PROJECT_DIR$/../src/mp" />
+      <root url="file://$PROJECT_DIR$/../src/mq" />
+      <root url="file://$PROJECT_DIR$/../src/beegopro" />
+      <root url="file://$PROJECT_DIR$/../src/cfg" />
+      <root url="file://$PROJECT_DIR$/../src/github.com" />
+      <root url="file://$PROJECT_DIR$/../src/g" />
+      <root url="file://$PROJECT_DIR$/../src/golang.org" />
+      <root url="file://$PROJECT_DIR$/../src/wechat" />
+      <root url="file://$PROJECT_DIR$/../src/redis" />
+      <root url="file://$PROJECT_DIR$/../src/beepro" />
+      <root url="file://$PROJECT_DIR$/../src/component" />
+      <root url="file://$PROJECT_DIR$/../src/dezhen" />
+      <root url="file://$PROJECT_DIR$/../src/util" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>

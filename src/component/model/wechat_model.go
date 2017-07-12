@@ -150,7 +150,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 			tmp := menu.GetClickEvent(mixedMsg)
 
 			if tmp.EventKey == "sendNews" {
-				url := "http://www.91coolshe.com/m/binds/new?wxid=" + mixedMsg.ToUserName + "&openid=" + mixedMsg.FromUserName
+				url := "http://www.e7tuitui.com/m/binds/new?wxid=" + mixedMsg.ToUserName + "&openid=" + mixedMsg.FromUserName
 				log.Println(url)
 				resp := section.IsBindInfo(mixedMsg.ToUserName, mixedMsg.FromUserName)
 				if resp.Res == "success" {
