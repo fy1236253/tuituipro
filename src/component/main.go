@@ -12,6 +12,7 @@ import (
 	"os/signal"
 	"redis"
 	"syscall"
+	"github.com/astaxie/beego/logs"
 )
 
 func main() {
@@ -28,15 +29,16 @@ func main() {
 	g.InitRootDir()      //全局参数
 	redis.InitConnPool() //redis 链接初始化
 
-	logTo := cfg.Config().Logs
-	if logTo != "stdout" {
-		f, err := os.OpenFile(logTo, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-		if err != nil {
-			panic(fmt.Sprintf("open logfile error"))
-		}
-		defer f.Close()
-		log.SetOutput(f)
-	}
+	//logTo := cfg.Config().Logs
+	//if logTo != "stdout" {
+	//	f, err := os.OpenFile(logTo, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	//	if err != nil {
+	//		panic(fmt.Sprintf("open logfile error"))
+	//	}
+	//	defer f.Close()
+	//	log.SetOutput(f)
+	//}
+	logs.SetLogger(logs.AdapterFile, `{"filename":"logs/log.log"}`)
 	// 日志追加pid和时间
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
 	log.SetPrefix(fmt.Sprintf("PID.%d ", os.Getpid()))
@@ -53,7 +55,6 @@ func main() {
 
 		// mq.ConnPool.Close() // 关闭连接池
 		redis.ConnPool.Close()
-
 		log.Println("all service stop ok ")
 		os.Exit(0)
 	}()
