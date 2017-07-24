@@ -133,7 +133,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 			log.Println(sence)
 			if sence == "" {
 				if mixedMsg.ToUserName == "gh_adb87f79bbcd" {
-					u, e := mpuser.GetUserInfo(section.GetAccessTokenFromRedis("wxb7f7a24ef49a4263"), mixedMsg.FromUserName, "")
+					u, e := mpuser.GetUserInfo(section.GetAccessTokenFromRedis(mixedMsg.ToUserName), mixedMsg.FromUserName, "")
 					if e == nil {
 						SaveUser(u)
 					}
