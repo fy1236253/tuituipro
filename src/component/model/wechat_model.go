@@ -1,7 +1,6 @@
 package model
 
 import (
-	"component/model"
 	"component/section"
 	"encoding/xml"
 	"log"
@@ -9,6 +8,7 @@ import (
 	"mp/menu"
 	"mp/message"
 	"mp/message/request"
+	mpuser "mp/user"
 	"net/http"
 	"net/url"
 	"util"
@@ -135,7 +135,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 				if mixedMsg.ToUserName == "gh_adb87f79bbcd" {
 					u, e := mpuser.GetUserInfo(section.GetAccessTokenFromRedis("wxb7f7a24ef49a4263"), mixedMsg.FromUserName, "")
 					if e == nil {
-						model.SaveUser(u)
+						SaveUser(u)
 					}
 				}
 			} else {
