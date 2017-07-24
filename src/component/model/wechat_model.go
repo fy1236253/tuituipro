@@ -1,6 +1,7 @@
 package model
 
 import (
+	"component/model"
 	"component/section"
 	"encoding/xml"
 	"log"
@@ -130,7 +131,16 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 			obj := request.GetSubscribeByScanEvent(mixedMsg)
 			sence, _ := obj.Scene()
 			log.Println(sence)
-			section.SubscribeFeedback(mixedMsg.FromUserName, sence)
+			if sence == "" {
+				if mixedMsg.ToUserName == "gh_adb87f79bbcd" {
+					u, e := mpuser.GetUserInfo(section.GetAccessTokenFromRedis("wxb7f7a24ef49a4263"), mixedMsg.FromUserName, "")
+					if e == nil {
+						model.SaveUser(u)
+					}
+				}
+			} else {
+				section.SubscribeFeedback(mixedMsg.FromUserName, sence)
+			}
 		}
 
 	// 取消关注
