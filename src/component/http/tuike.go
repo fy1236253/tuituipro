@@ -8,7 +8,6 @@ import (
 	"encoding/xml"
 	"log"
 	"mp"
-	"mp/menu"
 	"mp/message"
 	"mp/message/request"
 	"net/http"
@@ -81,7 +80,7 @@ func ConfigWechatRoutes() {
 							section.CheckIsNil(authorInfo)
 							authorInfo.AuthorizationInfo.SetBasicAuthorizerInfo()
 							section.SetOpenLocation(mixedMsg.AuthorizerAppid)
-							menu.SearchMenu(mixedMsg.ToUserName)
+							// menu.SearchMenu(mixedMsg.ToUserName)
 							log.Println("<-------Authority finished------->")
 						}
 					// 取消授权
