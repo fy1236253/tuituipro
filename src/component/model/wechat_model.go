@@ -98,7 +98,6 @@ func ProcessWechatText(mixedMsg *message.MixedMessage) {
 			SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "欢迎您管理员！")
 			menu.SearchMenu(mixedMsg.ToUserName)
 		}
-
 	case "上报位置":
 		{
 			SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "欢迎您管理员！正在上报地理位置")
@@ -131,9 +130,10 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 			obj := request.GetSubscribeByScanEvent(mixedMsg)
 			sence, _ := obj.Scene()
 			log.Println(sence)
+			u, e := mpuser.GetUserInfo(section.GetAccessTokenFromRedis(mixedMsg.ToUserName), mixedMsg.FromUserName, "")
+			go SaveUserLocal(mixedMsg.ToUserName, u)
 			if sence == "" {
 				if mixedMsg.ToUserName == "gh_adb87f79bbcd" {
-					u, e := mpuser.GetUserInfo(section.GetAccessTokenFromRedis(mixedMsg.ToUserName), mixedMsg.FromUserName, "")
 					if e == nil {
 						SaveUser(u)
 					}
