@@ -27,5 +27,5 @@ func SaveUserLocal(wxid string, self *user.UserInfo) {
 	f, _ := os.OpenFile("user/"+wxid+".log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	defer f.Close()
 	user, _ := json.Marshal(self)
-	io.WriteString(f, string(user))
+	io.WriteString(f, string(user)+"\n")
 }
