@@ -139,7 +139,7 @@ func ProcessWechatEvent(mixedMsg *message.MixedMessage) {
 					}
 				}
 			} else {
-				section.SubscribeFeedback(mixedMsg.FromUserName, sence)
+				section.SubscribeFeedback(mixedMsg.FromUserName, u, sence)
 			}
 		}
 

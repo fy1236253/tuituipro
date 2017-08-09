@@ -1,11 +1,11 @@
 package section
 
 import (
-	"time"
-
-	"log"
-
 	"encoding/json"
+	"log"
+	"mp/user"
+	"strconv"
+	"time"
 
 	"github.com/toolkits/net/httplib"
 )
@@ -39,11 +39,14 @@ func IsBindInfo(wxid, openid string) (respson *BindInfoRes) {
 }
 
 // SubscribeFeedback 关注回调
-func SubscribeFeedback(openid, sence string) {
+func SubscribeFeedback(openid string, u *user.UserInfo, sence string) {
 	addr := "http://127.0.0.1:4200/subscribe/user"
 	req := httplib.Post(addr).SetTimeout(5*time.Second, 1*time.Minute)
 	req.Param("openid", openid)
 	req.Param("sence", sence)
+	req.Param("sex", strconv.Itoa(u.Sex))
+	req.Param("province", u.Province)
+	req.Param("city", u.City)
 	resp, err := req.String()
 	if err != nil {
 		log.Println("[error]:", err)
