@@ -61,3 +61,8 @@ type Button struct {
 type MenuJSON struct {
 	Menu Menu `json:"menu"`
 }
+
+type SearchMenuJSON struct {
+	IsMenuOpen   int  `json:"is_menu_open"`
+	SelfMenuInfo Menu `json:"selfmenu_info"`
+}

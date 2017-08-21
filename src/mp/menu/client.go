@@ -42,7 +42,7 @@ func SearchMenu(wxid string) {
 	r := httplib.Get(url).SetTimeout(3*time.Second, 1*time.Minute)
 	resp, _ := r.String()
 	log.Println(resp)
-	var menuJson MenuJSON
+	var menuJson SearchMenuJSON
 	var Bt Button
 	err := json.Unmarshal([]byte(resp), &menuJson)
 	if err != nil {
@@ -50,7 +50,7 @@ func SearchMenu(wxid string) {
 		log.Println("create menu fail")
 		return
 	}
-	buttonLength := len(menuJson.Menu.Buttons)
+	buttonLength := len(menuJson.SelfMenuInfo.Buttons)
 	log.Println(buttonLength)
 	if buttonLength > 2 {
 		Bt.Name = "我要传播"
@@ -58,18 +58,18 @@ func SearchMenu(wxid string) {
 		Bt.Key = "sendNews"
 		var bt []Button
 		bt = append(bt, Bt)
-		bt = append(bt, menuJson.Menu.Buttons[buttonLength-1].SubButtons...)
-		menuJson.Menu.Buttons[buttonLength-1].SubButtons = bt
+		bt = append(bt, menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons...)
+		menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons = bt
 		// menuJson.Menu.Buttons[buttonLength-1].SubButtons = append(menuJson.Menu.Buttons[buttonLength-1].SubButtons, Bt)
 	} else {
 		Bt.Name = "我要传播"
 		Bt.Type = "click"
 		Bt.Key = "sendNews"
 		log.Println("create menu faild")
-		menuJson.Menu.Buttons = append(menuJson.Menu.Buttons, Bt)
+		menuJson.SelfMenuInfo.Buttons = append(menuJson.SelfMenuInfo.Buttons, Bt)
 	}
 	log.Println(menuJson)
-	bytes, _ := json.Marshal(menuJson.Menu)
+	bytes, _ := json.Marshal(menuJson.SelfMenuInfo)
 	log.Println(string(bytes))
 	// CreateMenu(string(bytes), section.GetAccessTokenFromRedis(wxid))
 }
