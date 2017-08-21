@@ -59,7 +59,7 @@ type NewsList struct {
 	Digest     string `json:"digest,omitempty"`     //摘要
 	ShowCover  int    `json:"show_cover,omitempty"` //是否显示封面 0 不显示 1 显示
 	CoverURL   string `json:"cover_url,omitempty"`
-	ContentURL string `json:"content_url,omitempty,string"`
+	contentURL string `json:"content_url,omitempty"`
 	SourceURL  string `json:"source_url,omitempty"`
 }
 
@@ -69,8 +69,8 @@ type MenuJSON struct {
 }
 
 type SearchMenuJSON struct {
-	IsMenuOpen   int  `json:"is_menu_open"`
-	SelfMenuInfo Menu `json:"selfmenu_info"`
+	IsMenuOpen   int  `json:"is_menu_open,omitempty"`
+	SelfMenuInfo Menu `json:"selfmenu_info,omitempty"`
 }
 
 type Menu struct {
