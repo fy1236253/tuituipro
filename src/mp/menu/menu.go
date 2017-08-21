@@ -84,11 +84,11 @@ type Button struct {
 	Key      string `json:"key,omitempty"`  // 非必须; 菜单KEY值, 用于消息接口推送, 不超过128字节
 	URL      string `json:"url,omitempty"`  // 非必须; 网页链接, 用户点击菜单可打开链接, 不超过256字节
 	NewsInfo struct {
-		List []NewsList `json:"list"`
-	} `json:"news_info"`
+		List []NewsList `json:"list,omitempty"`
+	} `json:"news_info,omitempty"`
 	MediaId    string `json:"media_id,omitempty"` // 非必须; 调用新增永久素材接口返回的合法media_id
 	SubButtons struct {
-		List []SubButton `json:"list"`
+		List []SubButton `json:"list,omitempty"`
 	} `json:"sub_button,omitempty"` // 非必须; 二级菜单数组, 个数应为1~5个
 }
 
@@ -98,6 +98,6 @@ type SubButton struct {
 	Key      string `json:"key,omitempty"`  // 非必须; 菜单KEY值, 用于消息接口推送, 不超过128字节
 	URL      string `json:"url,omitempty"`  // 非必须; 网页链接, 用户点击菜单可打开链接, 不超过256字节
 	NewsInfo struct {
-		List []NewsList `json:"list"`
-	} `json:"news_info"`
+		List []NewsList `json:"list,omitempty"`
+	} `json:"news_info,omitempty"`
 }
