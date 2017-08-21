@@ -54,18 +54,18 @@ const (
 
 // NewsList 图文消息列表
 type NewsList struct {
-	Title      string `json:"title"`
-	Author     string `json:"author"`
-	Digest     string `json:"digest"`     //摘要
-	ShowCover  int    `json:"show_cover"` //是否显示封面 0 不显示 1 显示
-	CoverURL   string `json:"cover_url"`
-	ContentURL string `json:"content_url"`
-	SourceURL  string `json:"source_url"`
+	Title      string `json:"title,omitempty"`
+	Author     string `json:"author,omitempty"`
+	Digest     string `json:"digest,omitempty"`     //摘要
+	ShowCover  int    `json:"show_cover,omitempty"` //是否显示封面 0 不显示 1 显示
+	CoverURL   string `json:"cover_url,omitempty"`
+	ContentURL string `json:"content_url,omitempty"`
+	SourceURL  string `json:"source_url,omitempty"`
 }
 
 // MenuJSON 菜单json结构体
 type MenuJSON struct {
-	Menu Menu `json:"menu"`
+	Menu Menu `json:"menu,omitempty"`
 }
 
 type SearchMenuJSON struct {
