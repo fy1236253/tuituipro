@@ -123,7 +123,6 @@ func ConfigWechatRoutes() {
 		case "GET":
 			{
 			}
-
 		case "POST":
 			{
 				if queryValues.Get("encrypt_type") == "aes" {

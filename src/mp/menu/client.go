@@ -38,13 +38,18 @@ func CreateMenu(obj interface{}, accesstoken string) (err error) {
 
 // SearchMenu 查询菜单选项
 func SearchMenu(wxid string) {
-	url := "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=" + section.GetAccessTokenFromRedis(wxid)
+	url := "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=" + section.GetAccessTokenFromRedis(wxid)
 	r := httplib.Get(url).SetTimeout(3*time.Second, 1*time.Minute)
 	resp, _ := r.String()
 	log.Println(resp)
 	var menuJson MenuJSON
 	var Bt Button
-	json.Unmarshal([]byte(resp), &menuJson)
+	err := json.Unmarshal([]byte(resp), &menuJson)
+	if err != nil {
+		log.Println(err)
+		log.Println("create menu fail")
+		return
+	}
 	buttonLength := len(menuJson.Menu.Buttons)
 	log.Println(buttonLength)
 	if buttonLength > 2 {
@@ -66,7 +71,7 @@ func SearchMenu(wxid string) {
 	log.Println(menuJson)
 	bytes, _ := json.Marshal(menuJson.Menu)
 	log.Println(string(bytes))
-	CreateMenu(string(bytes), section.GetAccessTokenFromRedis(wxid))
+	// CreateMenu(string(bytes), section.GetAccessTokenFromRedis(wxid))
 }
 
 // DeleteMenu 删除菜单

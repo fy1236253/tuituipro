@@ -90,7 +90,7 @@ func ProcessWechatText(mixedMsg *message.MixedMessage) {
 	switch txtContent {
 	case "只恐夜深花睡去":
 		{
-			go SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "放下屠刀立地成佛！")
+			go SendMessageText(mixedMsg.ToUserName, mixedMsg.FromUserName, "删除菜单接口")
 			menu.DeleteMenu(mixedMsg.ToUserName)
 		}
 	case "佛讲缘我讲钱":
