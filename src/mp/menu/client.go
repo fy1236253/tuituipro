@@ -73,7 +73,7 @@ func SearchMenu(wxid string) {
 	}
 	log.Println(menuJson)
 	// bytes, _ := json.Marshal(menuJson.SelfMenuInfo)
-
+	log.Println(menuJson.SelfMenuInfo.Buttons[0].SubButtons.List[0].NewsInfo.List[0].ContentURL)
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	json.NewEncoder(buf).Encode(menuJson)
