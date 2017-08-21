@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"bytes"
 	"component/section"
 	"encoding/json"
 	"log"
@@ -71,9 +72,13 @@ func SearchMenu(wxid string) {
 		menuJson.SelfMenuInfo.Buttons = append(menuJson.SelfMenuInfo.Buttons, Bt)
 	}
 	log.Println(menuJson)
-	bytes, _ := json.Marshal(menuJson.SelfMenuInfo)
-	log.Println(string(bytes))
-	CreateMenu(string(bytes), section.GetAccessTokenFromRedis(wxid))
+	// bytes, _ := json.Marshal(menuJson.SelfMenuInfo)
+
+	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
+	buf.Reset()
+	json.NewEncoder(buf).Encode(menuJson)
+	tmpjson := buf.String()
+	CreateMenu(tmpjson, section.GetAccessTokenFromRedis(wxid))
 }
 
 // DeleteMenu 删除菜单
