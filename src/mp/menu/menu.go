@@ -59,7 +59,7 @@ type NewsList struct {
 	Digest     string `json:"digest,omitempty"`     //摘要
 	ShowCover  int    `json:"show_cover,omitempty"` //是否显示封面 0 不显示 1 显示
 	CoverURL   string `json:"cover_url,omitempty"`
-	ContentURL string `json:"content_url,omitempty"`
+	ContentURL string `json:"content_url,omitempty,string"`
 	SourceURL  string `json:"source_url,omitempty"`
 }
 
