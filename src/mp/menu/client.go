@@ -71,7 +71,7 @@ func SearchMenu(wxid string) {
 	log.Println(menuJson)
 	bytes, _ := json.Marshal(menuJson.SelfMenuInfo)
 	log.Println(string(bytes))
-	// CreateMenu(string(bytes), section.GetAccessTokenFromRedis(wxid))
+	CreateMenu(string(bytes), section.GetAccessTokenFromRedis(wxid))
 }
 
 // DeleteMenu 删除菜单
