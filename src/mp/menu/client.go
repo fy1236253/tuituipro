@@ -78,7 +78,8 @@ func SearchMenu(wxid string) {
 	buf.Reset()
 	json.NewEncoder(buf).Encode(menuJson)
 	tmpjson := buf.String()
-	CreateMenu(tmpjson, section.GetAccessTokenFromRedis(wxid))
+	log.Println(tmpjson)
+	// CreateMenu(tmpjson, section.GetAccessTokenFromRedis(wxid))
 }
 
 // DeleteMenu 删除菜单
