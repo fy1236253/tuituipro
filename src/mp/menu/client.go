@@ -7,6 +7,7 @@ import (
 	"log"
 	"mp"
 	"net/url"
+	"regexp"
 	"time"
 
 	"github.com/toolkits/net/httplib"
@@ -73,11 +74,16 @@ func SearchMenu(wxid string) {
 	}
 	log.Println(menuJson)
 	// bytes, _ := json.Marshal(menuJson.SelfMenuInfo)
-	log.Println(menuJson.SelfMenuInfo.Buttons[0].SubButtons.List[0].NewsInfo.List[0].ContentURL)
+	// log.Println(menuJson.SelfMenuInfo.Buttons[0].SubButtons.List[0].NewsInfo.List[0].ContentURL)
 	buf := bytes.NewBuffer(make([]byte, 0, 16<<10))
 	buf.Reset()
 	json.NewEncoder(buf).Encode(menuJson)
 	tmpjson := buf.String()
+	log.Println(tmpjson)
+	regular := "\u0026"
+	reg := regexp.MustCompile(regular)
+	// IsTel := reg.MatchString(tmpjson)
+	reg.ReplaceAllString(tmpjson, "&")
 	log.Println(tmpjson)
 	// CreateMenu(tmpjson, section.GetAccessTokenFromRedis(wxid))
 }
