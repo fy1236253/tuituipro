@@ -56,8 +56,8 @@ type Button struct {
 	NewsInfo struct {
 		List []NewsList `json:"list"`
 	} `json:"news_info"`
-	MediaId    string      `json:"media_id,omitempty"`   // 非必须; 调用新增永久素材接口返回的合法media_id
-	SubButtons []SubButton `json:"sub_button,omitempty"` // 非必须; 二级菜单数组, 个数应为1~5个
+	MediaId    string    `json:"media_id,omitempty"`   // 非必须; 调用新增永久素材接口返回的合法media_id
+	SubButtons SubButton `json:"sub_button,omitempty"` // 非必须; 二级菜单数组, 个数应为1~5个
 }
 type SubButton struct {
 	Type    string   `json:"type,omitempty"` // 非必须; 菜单的响应动作类型
