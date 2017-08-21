@@ -84,7 +84,7 @@ func SearchMenu(wxid string) {
 	// IsTel := reg.MatchString(tmpjson)
 	tmjson1 := reg.ReplaceAllString(tmpjson, "&")
 	log.Println(tmjson1)
-	// CreateMenu(tmpjson, section.GetAccessTokenFromRedis(wxid))
+	CreateMenu(tmpjson, section.GetAccessTokenFromRedis(wxid))
 }
 
 // DeleteMenu 删除菜单
