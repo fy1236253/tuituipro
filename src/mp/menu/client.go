@@ -57,10 +57,11 @@ func SearchMenu(wxid string) {
 		SubBt.Name = "我要传播"
 		SubBt.Type = "click"
 		SubBt.Key = "sendNews"
-		var bt []SubButton
-		bt = append(bt, SubBt)
-		bt = append(bt, menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons...)
-		menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons = bt
+		// var bt []SubButton
+		// bt = append(bt, SubBt.SubButtons.List)
+		// bt = append(bt, menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons.List)
+		oldMenu := menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons.List
+		oldMenu = append(oldMenu, SubBt)
 		// menuJson.Menu.Buttons[buttonLength-1].SubButtons = append(menuJson.Menu.Buttons[buttonLength-1].SubButtons, Bt)
 	} else {
 		Bt.Name = "我要传播"
