@@ -80,10 +80,9 @@ func SearchMenu(wxid string) {
 	json.NewEncoder(buf).Encode(menuJson)
 	tmpjson := buf.String()
 	log.Println(tmpjson)
-	reg := regexp.MustCompile(`\\u0026.*`)
+	reg := regexp.MustCompile(`\\u0026`)
 	// IsTel := reg.MatchString(tmpjson)
-	log.Println(reg)
-	tmjson1 := reg.ReplaceAllString(tmpjson, "$(n)&")
+	tmjson1 := reg.ReplaceAllString(tmpjson, "&")
 	log.Println(tmjson1)
 	// CreateMenu(tmpjson, section.GetAccessTokenFromRedis(wxid))
 }
