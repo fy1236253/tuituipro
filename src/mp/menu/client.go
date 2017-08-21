@@ -80,8 +80,7 @@ func SearchMenu(wxid string) {
 	json.NewEncoder(buf).Encode(menuJson)
 	tmpjson := buf.String()
 	log.Println(tmpjson)
-	regular := "\u0026"
-	reg := regexp.MustCompile(regular)
+	reg := regexp.MustCompile(`\\u0026.*`)
 	// IsTel := reg.MatchString(tmpjson)
 	reg.ReplaceAllString(tmpjson, "&")
 	log.Println(tmpjson)
