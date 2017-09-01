@@ -54,13 +54,13 @@ const (
 
 // NewsList 图文消息列表
 type NewsList struct {
-	Title      string `json:"title"`
-	Author     string `json:"author"`
-	Digest     string `json:"digest"`     //摘要
-	ShowCover  int    `json:"show_cover"` //是否显示封面 0 不显示 1 显示
-	CoverURL   string `json:"cover_url"`
-	ContentURL string `json:"content_url"`
-	SourceURL  string `json:"source_url"`
+	Title      string `json:"title,omitempty"`
+	Author     string `json:"author,omitempty"`
+	Digest     string `json:"digest,omitempty"`     //摘要
+	ShowCover  int    `json:"show_cover,omitempty"` //是否显示封面 0 不显示 1 显示
+	CoverURL   string `json:"cover_url,omitempty"`
+	ContentURL string `json:"content_url,omitempty"`
+	SourceURL  string `json:"source_url,omitempty"`
 }
 
 // MenuJSON 菜单json结构体
@@ -79,25 +79,25 @@ type Menu struct {
 
 //Button 菜单的按钮
 type Button struct {
-	Type     string `json:"type"` // 非必须; 菜单的响应动作类型
-	Name     string `json:"name"` // 必须;  菜单标题, 不超过16个字节, 子菜单不超过40个字节
-	Key      string `json:"key"`  // 非必须; 菜单KEY值, 用于消息接口推送, 不超过128字节
-	URL      string `json:"url"`  // 非必须; 网页链接, 用户点击菜单可打开链接, 不超过256字节
+	Type     string `json:"type,omitempty"` // 非必须; 菜单的响应动作类型
+	Name     string `json:"name,omitempty"` // 必须;  菜单标题, 不超过16个字节, 子菜单不超过40个字节
+	Key      string `json:"key,omitempty"`  // 非必须; 菜单KEY值, 用于消息接口推送, 不超过128字节
+	URL      string `json:"url,omitempty"`  // 非必须; 网页链接, 用户点击菜单可打开链接, 不超过256字节
 	NewsInfo struct {
-		List []NewsList `json:"list"`
-	} `json:"news_info"`
-	MediaId    string `json:"media_id"` // 非必须; 调用新增永久素材接口返回的合法media_id
+		List []NewsList `json:"list,omitempty"`
+	} `json:"news_info,omitempty"`
+	MediaId    string `json:"media_id,omitempty"` // 非必须; 调用新增永久素材接口返回的合法media_id
 	SubButtons struct {
-		List []SubButton `json:"list"`
-	} `json:"sub_button"` // 非必须; 二级菜单数组, 个数应为1~5个
+		List []SubButton `json:"list,omitempty"`
+	} `json:"sub_button,omitempty"` // 非必须; 二级菜单数组, 个数应为1~5个
 }
 
 type SubButton struct {
-	Type     string `json:"type"` // 非必须; 菜单的响应动作类型
-	Name     string `json:"name"` // 必须;  菜单标题, 不超过16个字节, 子菜单不超过40个字节
-	Key      string `json:"key"`  // 非必须; 菜单KEY值, 用于消息接口推送, 不超过128字节
-	URL      string `json:"url"`  // 非必须; 网页链接, 用户点击菜单可打开链接, 不超过256字节
+	Type     string `json:"type,omitempty"` // 非必须; 菜单的响应动作类型
+	Name     string `json:"name,omitempty"` // 必须;  菜单标题, 不超过16个字节, 子菜单不超过40个字节
+	Key      string `json:"key,omitempty"`  // 非必须; 菜单KEY值, 用于消息接口推送, 不超过128字节
+	URL      string `json:"url,omitempty"`  // 非必须; 网页链接, 用户点击菜单可打开链接, 不超过256字节
 	NewsInfo struct {
-		List []NewsList `json:"list"`
-	} `json:"news_info"`
+		List []NewsList `json:"list,omitempty"`
+	} `json:"news_info,omitempty"`
 }
