@@ -4,19 +4,22 @@
         "button": [
             {
                 "name": "主页",
-                "news_info": {},
                 "sub_button": {
                     "list": [
                         {
+                            "value": "IisToaA0nOeD_xcDM4GULfJTTObJxrPFTps2pLKiS8E",
                             "type": "news",
                             "name": "子菜单名称",
                             "news_info": {
                                 "list": [
                                     {
                                         "title": "哇塞",
+                                        "author": "",
                                         "digest": "打发斯蒂芬",
+                                        "show_cover": 0,
                                         "cover_url": "http://mmbiz.qpic.cn/mmbiz_jpg/RqWMOeiakN9LlRLHXg5xvKibjqTgaIEH32AvKXujsRdvbfjgA5q6ohLmQnwicicOl3IpjYHEWB1kgziaKaAZxB9pBGA/0?wx_fmt=jpeg",
-                                        "content_url": "http://mp.weixin.qq.com/s?__biz=MzIxMjg5MTAzOA==&mid=100000002&idx=1&sn=b1027e96a2ea959416cf6091173e172e&chksm=17be65f320c9ece5d0f272528aad70db20b840f37484c33a8c8113ebbe759534c6c89be38b46#rd"
+                                        "content_url": "http://mp.weixin.qq.com/s?__biz=MzIxMjg5MTAzOA==&mid=100000002&idx=1&sn=b1027e96a2ea959416cf6091173e172e&chksm=17be65f320c9ece5d0f272528aad70db20b840f37484c33a8c8113ebbe759534c6c89be38b46#rd",
+                                        "source_url": ""
                                     }
                                 ]
                             }
@@ -24,8 +27,7 @@
                         {
                             "type": "view",
                             "name": "子菜单名称",
-                            "url": "https://mp.weixin.qq.com/advanced/selfmenu?action=index&t=advanced/menu-setting&token=964193840&lang=zh_CN",
-                            "news_info": {}
+                            "url": "https://mp.weixin.qq.com/advanced/selfmenu?action=index&t=advanced/menu-setting&token=964193840&lang=zh_CN"
                         }
                     ]
                 }
@@ -37,24 +39,24 @@
                     "list": [
                         {
                             "title": "哇塞",
+                            "author": "",
                             "digest": "打发斯蒂芬",
+                            "show_cover": 0,
                             "cover_url": "http://mmbiz.qpic.cn/mmbiz_jpg/RqWMOeiakN9LlRLHXg5xvKibjqTgaIEH32AvKXujsRdvbfjgA5q6ohLmQnwicicOl3IpjYHEWB1kgziaKaAZxB9pBGA/0?wx_fmt=jpeg",
-                            "content_url": "http://mp.weixin.qq.com/s?__biz=MzIxMjg5MTAzOA==&mid=100000002&idx=1&sn=b1027e96a2ea959416cf6091173e172e&chksm=17be65f320c9ece5d0f272528aad70db20b840f37484c33a8c8113ebbe759534c6c89be38b46#rd"
+                            "content_url": "http://mp.weixin.qq.com/s?__biz=MzIxMjg5MTAzOA==&mid=100000002&idx=1&sn=b1027e96a2ea959416cf6091173e172e&chksm=17be65f320c9ece5d0f272528aad70db20b840f37484c33a8c8113ebbe759534c6c89be38b46#rd",
+                            "source_url": ""
                         }
                     ]
-                },
-                "sub_button": {}
+                }
             },
             {
                 "name": "个人中心",
-                "news_info": {},
                 "sub_button": {
                     "list": [
                         {
                             "type": "view",
                             "name": "我要推广",
-                            "url": "http://91coolshe.com",
-                            "news_info": {}
+                            "url": "http://91coolshe.com"
                         }
                     ]
                 }

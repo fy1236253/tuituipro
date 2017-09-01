@@ -86,6 +86,7 @@ type Button struct {
 	NewsInfo   *NewsInfo   `json:"news_info,omitempty"`
 	MediaId    string      `json:"media_id,omitempty"` // 非必须; 调用新增永久素材接口返回的合法media_id
 	SubButtons *SubButtons `json:"sub_button,omitempty"`
+	Value      string      `json:"value,omitempty"`
 }
 type NewsInfo struct {
 	List []NewsList `json:"list,omitempty"`
