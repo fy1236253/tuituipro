@@ -54,13 +54,13 @@ const (
 
 // NewsList 图文消息列表
 type NewsList struct {
-	Title      string `json:"title,omitempty"`
-	Author     string `json:"author,omitempty"`
-	Digest     string `json:"digest,omitempty"`     //摘要
-	ShowCover  int    `json:"show_cover,omitempty"` //是否显示封面 0 不显示 1 显示
-	CoverURL   string `json:"cover_url,omitempty"`
-	ContentURL string `json:"content_url,omitempty"`
-	SourceURL  string `json:"source_url,omitempty"`
+	Title      string `json:"title"`
+	Author     string `json:"author"`
+	Digest     string `json:"digest"`     //摘要
+	ShowCover  int    `json:"show_cover"` //是否显示封面 0 不显示 1 显示
+	CoverURL   string `json:"cover_url"`
+	ContentURL string `json:"content_url"`
+	SourceURL  string `json:"source_url"`
 }
 
 // MenuJSON 菜单json结构体
@@ -91,6 +91,7 @@ type NewsInfo struct {
 	List []NewsList `json:"list,omitempty"`
 }
 type SubButton struct {
+	Value    string   `json:"value,omitempty"`
 	Type     string   `json:"type,omitempty"` // 非必须; 菜单的响应动作类型
 	Name     string   `json:"name,omitempty"` // 必须;  菜单标题, 不超过16个字节, 子菜单不超过40个字节
 	Key      string   `json:"key,omitempty"`  // 非必须; 菜单KEY值, 用于消息接口推送, 不超过128字节
