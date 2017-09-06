@@ -12,6 +12,7 @@ import (
 	"os/signal"
 	"redis"
 	"syscall"
+
 	"github.com/astaxie/beego/logs"
 )
 
@@ -38,10 +39,11 @@ func main() {
 	//	defer f.Close()
 	//	log.SetOutput(f)
 	//}
-	logs.SetLogger(logs.AdapterFile, `{"filename":"logs/log.log"}`)
+	loggers := logs.NewLogger(1024)
+	loggers.SetLogger("tuike", `{"filename":"logs/log.log"}`)
 	// 日志追加pid和时间
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
-	log.SetPrefix(fmt.Sprintf("PID.%d ", os.Getpid()))
+	// log.SetPrefix(fmt.Sprintf("PID.%d ", os.Getpid()))
 	go http.Start()
 	go cron.Start()
 	sigs := make(chan os.Signal, 1)
