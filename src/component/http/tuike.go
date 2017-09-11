@@ -106,14 +106,14 @@ func ConfigWechatRoutes() {
 	})
 	http.HandleFunc("/wxpush/", func(w http.ResponseWriter, req *http.Request) {
 		// 捕获异常
-		defer func() {
-			if r := recover(); r != nil {
-				log.Printf("Runtime error caught: %v", r)
-				w.WriteHeader(400)
-				w.Write([]byte(""))
-				return
-			}
-		}()
+		// defer func() {
+		// 	if r := recover(); r != nil {
+		// 		log.Printf("Runtime error caught: %v", r)
+		// 		w.WriteHeader(400)
+		// 		w.Write([]byte(""))
+		// 		return
+		// 	}
+		// }()
 		var wxcfg *mp.TuiKeConfig
 		var queryValues url.Values
 		queryValues, _ = url.ParseQuery(req.URL.RawQuery)
