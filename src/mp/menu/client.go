@@ -62,8 +62,14 @@ func SearchMenu(wxid string) {
 		// var bt []SubButton
 		// bt = append(bt, SubBt.SubButtons.List)
 		// bt = append(bt, menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons.List)
-		oldMenu := menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons.List
-		oldMenu = append(oldMenu, SubBt)
+		if menuJson.SelfMenuInfo.Buttons[2].SubButtons == nil {
+			var list *SubButtons
+			list.List[0] = SubBt
+			menuJson.SelfMenuInfo.Buttons[2].SubButtons = list
+		} else {
+			oldMenu := menuJson.SelfMenuInfo.Buttons[2].SubButtons.List
+			oldMenu = append(oldMenu, SubBt)
+		}
 		// menuJson.Menu.Buttons[buttonLength-1].SubButtons = append(menuJson.Menu.Buttons[buttonLength-1].SubButtons, Bt)
 	} else {
 		Bt.Name = "我要传播"
