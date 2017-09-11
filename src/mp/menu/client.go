@@ -63,11 +63,11 @@ func SearchMenu(wxid string) {
 		// bt = append(bt, SubBt.SubButtons.List)
 		// bt = append(bt, menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons.List)
 		// if menuJson.SelfMenuInfo.Buttons[2].SubButtons ==  {
-		var list SubButtons
-		list.List = append(list.List, SubBt)
+		var list []SubButton
+		list = append(list, SubBt)
 		menuJson.SelfMenuInfo.Buttons[2].SubButtons = list
 		// } else {
-		oldMenu := menuJson.SelfMenuInfo.Buttons[2].SubButtons.List
+		oldMenu := menuJson.SelfMenuInfo.Buttons[2].SubButtons
 		oldMenu = append(oldMenu, SubBt)
 		// }
 		// menuJson.Menu.Buttons[buttonLength-1].SubButtons = append(menuJson.Menu.Buttons[buttonLength-1].SubButtons, Bt)
