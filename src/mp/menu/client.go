@@ -64,7 +64,7 @@ func SearchMenu(wxid string) {
 		// bt = append(bt, menuJson.SelfMenuInfo.Buttons[buttonLength-1].SubButtons.List)
 		if menuJson.SelfMenuInfo.Buttons[2].SubButtons == nil {
 			var list *SubButtons
-			list.List[0] = SubBt
+			list.List = append(list.List, SubBt)
 			menuJson.SelfMenuInfo.Buttons[2].SubButtons = list
 		} else {
 			oldMenu := menuJson.SelfMenuInfo.Buttons[2].SubButtons.List
